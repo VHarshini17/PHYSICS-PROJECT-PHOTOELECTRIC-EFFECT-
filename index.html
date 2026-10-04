@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Virtual Physics Laboratory on the Photoelectric Effect for B.Tech First-Year Physics. Explore photon theory, threshold frequency, work function, stopping potential, and Einstein's equation with real-time simulation and graphs.">
+  <meta name="keywords" content="Photoelectric Effect, Physics Project, B.Tech Physics, Virtual Lab, Einstein Equation, Planck's Constant, Work Function, Stopping Potential">
+  <meta name="author" content="B.Tech Engineering Physics Team">
+  <title>The Photoelectric Effect | Virtual Physics Laboratory</title>
+  
+  <!-- Modern Scientific Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Grid & Glow Overlay -->
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="main-nav">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand" aria-label="Photoelectric Virtual Lab Home">
+        <span class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" fill="#00f0ff" />
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="#38bdf8" />
+          </svg>
+        </span>
+        <span class="brand-text">QUANTUM<span class="brand-accent">LAB</span></span>
+        <span class="brand-badge">B.Tech Physics</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links" id="nav-menu">
+        <a href="#home" class="nav-item active">Home</a>
+        <a href="#theory" class="nav-item">Theory</a>
+        <a href="#einstein" class="nav-item">Einstein's Law</a>
+        <a href="#experiment" class="nav-item nav-highlight">Virtual Lab</a>
+        <a href="#observations" class="nav-item">Observations</a>
+        <a href="#graphs" class="nav-item">Graphs</a>
+        <a href="#challenges" class="nav-item">Challenges</a>
+        <a href="#applications" class="nav-item">Applications</a>
+        <a href="#timeline" class="nav-item">Timeline</a>
+        <a href="#viva-quiz" class="nav-item">Viva Questions</a>
+        <a href="#conclusion" class="nav-item">Conclusion</a>
+      </nav>
+
+      <!-- Action Button & Mobile Toggle -->
+      <div class="nav-actions">
+        <a href="#experiment" class="btn btn-primary nav-cta" id="nav-experiment-btn">
+          <span>Start Experiment</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 1: HERO / HOME -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <div class="hero-header">
+          <div class="badge-pill">
+            <span class="pulse-dot"></span>
+            <span>B.Tech 1st Year Engineering Physics Project</span>
+          </div>
+          <h1 class="hero-title">
+            THE PHOTOELECTRIC <span class="gradient-text">EFFECT</span>
+          </h1>
+          <p class="hero-subtitle">An Interactive Virtual Physics Laboratory</p>
+          <p class="hero-description">
+            Explore how light ejects electrons from a metal surface and discover the fundamental quantum relationship between radiation frequency, intensity, work function, and electron kinetic energy.
+          </p>
+          
+          <div class="hero-cta-group">
+            <a href="#experiment" class="btn btn-primary btn-large" id="hero-start-btn">
+              <span>Start Experiment &rarr;</span>
+            </a>
+            <a href="#theory" class="btn btn-secondary btn-large" id="hero-theory-btn">
+              <span>Learn the Theory</span>
+            </a>
+            <a href="#viva-quiz" class="btn btn-outline btn-large" id="hero-quiz-btn">
+              <span>Viva Voce Quiz</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Animated Schematic Widget -->
+        <div class="hero-visual-card glass-panel">
+          <div class="hero-visual-header">
+            <span class="card-tag">PHYSICAL PHENOMENON OVERVIEW</span>
+            <div class="status-indicator">
+              <span class="pulse-ring"></span>
+              <span class="status-text">Light Quanta &rarr; Free Electrons</span>
+            </div>
+          </div>
+          
+          <div class="hero-schematic" id="hero-schematic">
+            <div class="schematic-stage">
+              <div class="schematic-node node-source">
+                <div class="node-icon">&bull;</div>
+                <div class="node-label">Light Source</div>
+                <div class="node-sub">Monochromatic Radiation</div>
+              </div>
+              <div class="schematic-arrow arrow-photons">
+                <span class="particle-flow photon-flow"></span>
+                <span class="arrow-caption">Photons (E = hf)</span>
+              </div>
+              <div class="schematic-node node-metal">
+                <div class="node-icon">&#9638;</div>
+                <div class="node-label">Metal Surface</div>
+                <div class="node-sub">Work Function &phi;</div>
+              </div>
+              <div class="schematic-arrow arrow-electrons">
+                <span class="particle-flow electron-flow"></span>
+                <span class="arrow-caption">Photoelectrons (K<sub>max</sub>)</span>
+              </div>
+              <div class="schematic-node node-collector">
+                <div class="node-icon">&#9645;</div>
+                <div class="node-label">Collector Plate</div>
+                <div class="node-sub">Photocurrent &mu;A</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highlighted Core Einstein Equation -->
+          <div class="hero-equation-bar">
+            <div class="equation-badge">EINSTEIN'S PHOTOELECTRIC LAW</div>
+            <div class="equation-display">
+              <span class="eq-term eq-kmax">K<sub>max</sub></span>
+              <span class="eq-operator">=</span>
+              <span class="eq-term eq-hf">h f</span>
+              <span class="eq-operator">&minus;</span>
+              <span class="eq-term eq-phi">&Phi;</span>
+              <span class="eq-subtext">&equiv; e V<sub>s</sub></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Four Concept Cards -->
+      <div class="hero-concept-cards">
+        <div class="concept-card glass-panel">
+          <div class="concept-icon icon-energy">E</div>
+          <h3>Photon Energy</h3>
+          <p class="concept-formula">E = hf = hc / &lambda;</p>
+          <p class="concept-desc">Energy of single light quantum, proportional solely to its frequency.</p>
+        </div>
+
+        <div class="concept-card glass-panel">
+          <div class="concept-icon icon-work">&Phi;</div>
+          <h3>Work Function</h3>
+          <p class="concept-formula">&Phi; = h f<sub>0</sub></p>
+          <p class="concept-desc">Minimum energy required to liberate an electron from the metal lattice.</p>
+        </div>
+
+        <div class="concept-card glass-panel">
+          <div class="concept-icon icon-threshold">f<sub>0</sub></div>
+          <h3>Threshold Frequency</h3>
+          <p class="concept-formula">f<sub>0</sub> = &Phi; / h</p>
+          <p class="concept-desc">Cut-off frequency below which zero photoelectrons can be ejected.</p>
+        </div>
+
+        <div class="concept-card glass-panel">
+          <div class="concept-icon icon-potential">V<sub>s</sub></div>
+          <h3>Stopping Potential</h3>
+          <p class="concept-formula">e V<sub>s</sub> = K<sub>max</sub></p>
+          <p class="concept-desc">Minimum retarding voltage that halts even the fastest emitted electrons.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THEORY SECTION -->
+    <section id="theory" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">FIRST-YEAR B.TECH CURRICULUM</span>
+        <h2 class="section-title">Fundamental Theory of the Photoelectric Effect</h2>
+        <p class="section-subtitle">
+          Classical wave theory vs. quantum photon hypothesis: understanding the microscopic mechanism of electron emission.
+        </p>
+      </div>
+
+      <!-- Definition Highlight Card -->
+      <div class="definition-banner glass-panel">
+        <div class="definition-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/></svg>
+        </div>
+        <div class="definition-body">
+          <span class="definition-tag">STANDARD DEFINITION</span>
+          <p class="definition-text">
+            <strong>The Photoelectric Effect</strong> is the phenomenon in which electrons (termed <em>photoelectrons</em>) are instantaneously ejected from a material surface (typically a photosensitive metal) when electromagnetic radiation of sufficiently high frequency falls upon it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Theory Concept Explorer -->
+      <div class="theory-grid">
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">01</div>
+          <h3>Incident Light & Photons</h3>
+          <p>
+            Light exhibits dual nature. In interaction with bound matter, electromagnetic waves behave as localized packets of energy called <strong>photons</strong>. Each photon travels at velocity <em>c</em> with energy proportional to frequency: <code>E = hf</code>.
+          </p>
+          <div class="theory-meta">
+            <span>Formula: <strong>E = hf = hc/&lambda;</strong></span>
+          </div>
+        </div>
+
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">02</div>
+          <h3>Metal Surface & Free Electrons</h3>
+          <p>
+            Metals contain a sea of conduction electrons. Although free to move inside the crystal lattice, they are trapped by an attractive potential barrier at the boundary. To escape into vacuum, an electron must absorb enough energy to overcome this electrostatic surface barrier.
+          </p>
+          <div class="theory-meta">
+            <span>Potential Barrier: <strong>Surface Dipole Layer</strong></span>
+          </div>
+        </div>
+
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">03</div>
+          <h3>Threshold Frequency (f₀)</h3>
+          <p>
+            For each photosensitive substance, there exists a specific minimum frequency <code>f₀</code> below which <strong>no emission occurs</strong>, regardless of the light beam's intensity or exposure duration.
+          </p>
+          <div class="theory-meta">
+            <span>Cut-off condition: <strong>f &ge; f₀ for emission</strong></span>
+          </div>
+        </div>
+
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">04</div>
+          <h3>Work Function (&Phi;)</h3>
+          <p>
+            The characteristic property of the target metal, defined as the minimum energy necessary to eject an electron from the Fermi level to infinity with zero velocity: <code>&Phi; = h f₀</code>. Alkali metals (Cs, K, Na) have very low work functions.
+          </p>
+          <div class="theory-meta">
+            <span>Typical range: <strong>1.9 eV &ndash; 5.6 eV</strong></span>
+          </div>
+        </div>
+
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">05</div>
+          <h3>Photocurrent (I)</h3>
+          <p>
+            When emitted photoelectrons travel across the evacuated tube and reach the positive collector anode, an electric current is established in the external circuit. When <code>f &gt; f₀</code>, photocurrent is directly proportional to incident intensity.
+          </p>
+          <div class="theory-meta">
+            <span>Proportionality: <strong>I &prop; Intensity (for f &ge; f₀)</strong></span>
+          </div>
+        </div>
+
+        <div class="theory-card glass-panel">
+          <div class="theory-card-badge">06</div>
+          <h3>Stopping Potential (Vₛ)</h3>
+          <p>
+            The negative retarding potential applied to the collector anode just sufficient to reduce the photocurrent to zero. At this point, the electrical retarding work done equals the maximum kinetic energy of the fastest emitted photoelectrons: <code>e Vₛ = K<sub>max</sub></code>.
+          </p>
+          <div class="theory-meta">
+            <span>Equivalence: <strong>Vₛ (in Volts) = K<sub>max</sub> (in eV)</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Theory Failure Comparison Table -->
+      <div class="comparison-container glass-panel">
+        <h3 class="comparison-title">
+          <span>Failure of Classical Wave Theory vs. Quantum Triumph</span>
+        </h3>
+        <div class="table-responsive">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Experimental Observation</th>
+                <th>Classical Wave Theory Prediction (Failed)</th>
+                <th>Einstein's Quantum Explanation (Verified)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Existence of Threshold Frequency (f₀)</strong></td>
+                <td>Any light of any frequency should eject electrons if intensity is high enough or given enough time to accumulate energy.</td>
+                <td>Light is quantized. Energy is delivered in single quanta (hf). If hf &lt; &Phi;, the photon cannot eject an electron regardless of intensity.</td>
+              </tr>
+              <tr>
+                <td><strong>Instantaneous Emission (&lt; 10⁻⁹ s)</strong></td>
+                <td>Continuous wavefront spreads energy over millions of atoms; calculated time lag to accumulate escape energy should be hours/days.</td>
+                <td>Energy transfer is an instantaneous one-to-one collision between a single photon and a single bound electron.</td>
+              </tr>
+              <tr>
+                <td><strong>K<sub>max</sub> is Independent of Intensity</strong></td>
+                <td>Higher intensity means larger wave electric field amplitude, so electrons should oscillate with greater kinetic energy.</td>
+                <td>Higher intensity only increases the number of photons per second, not the energy of individual photons. K<sub>max</sub> = hf &minus; &Phi;.</td>
+              </tr>
+              <tr>
+                <td><strong>K<sub>max</sub> Depends Linearly on Frequency</strong></td>
+                <td>Wave energy depends only on wave amplitude/intensity, not frequency.</td>
+                <td>Photon energy E = hf increases linearly with frequency. Any excess beyond &Phi; becomes electron kinetic energy.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EINSTEIN'S EXPLANATION -->
+    <section id="einstein" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">THEORETICAL FOUNDATION</span>
+        <h2 class="section-title">Einstein's Photon Theory & Derivations</h2>
+        <p class="section-subtitle">
+          How Albert Einstein in 1905 extended Planck's quantum hypothesis to explain the photoelectric effect, earning the 1921 Nobel Prize in Physics.
+        </p>
+      </div>
+
+      <div class="einstein-grid">
+        <!-- Derivation Steps Column -->
+        <div class="derivation-column">
+          <div class="derivation-card glass-panel">
+            <div class="step-badge">POSTULATE 1</div>
+            <h3>Quantum Nature of Light</h3>
+            <p>
+              Light does not propagate merely as continuous waves in space. Instead, radiant energy exists as discrete packets or localized energy quanta called <strong>photons</strong>.
+            </p>
+            <div class="formula-box">
+              <span class="formula-label">Energy of a Single Photon:</span>
+              <div class="math-eq">
+                <span class="math-var">E</span> = <span class="math-var">h</span><span class="math-var">f</span> = <span class="math-frac"><span class="math-num"><span class="math-var">h</span><span class="math-var">c</span></span><span class="math-den"><span class="math-var">&lambda;</span></span></span>
+              </div>
+            </div>
+            <ul class="scientific-list">
+              <li><strong>h</strong> = Planck's constant = <code>4.135667 &times; 10⁻¹⁵ eV&middot;s</code> (or <code>6.626070 &times; 10⁻³⁴ J&middot;s</code>)</li>
+              <li><strong>f</strong> = Frequency of incident radiation (Hz)</li>
+              <li><strong>c</strong> = Velocity of light in vacuum = <code>3 &times; 10⁸ m/s</code></li>
+              <li><strong>&lambda;</strong> = Wavelength of radiation (m or nm)</li>
+            </ul>
+          </div>
+
+          <div class="derivation-card glass-panel">
+            <div class="step-badge">POSTULATE 2</div>
+            <h3>Conservation of Energy in Photoemission</h3>
+            <p>
+              When a photon penetrates a metal surface, it collides with a single bound electron and transfers its <em>entire energy</em> to that electron in a single quantum event.
+            </p>
+            <div class="formula-box">
+              <span class="formula-label">Energy Balance Equation:</span>
+              <div class="math-eq">
+                <span class="math-var">h</span><span class="math-var">f</span> = <span class="math-var">&phi;</span> + <span class="math-var">K</span><sub class="math-sub">max</sub>
+              </div>
+            </div>
+            <p class="step-explanation">
+              Part of the absorbed energy <code>&phi;</code> is expended to overcome the binding work function of the metal. The remaining balance appears as the maximum kinetic energy <code>K<sub>max</sub></code> of the liberated photoelectron.
+            </p>
+          </div>
+
+          <div class="derivation-card glass-panel">
+            <div class="step-badge">POSTULATE 3</div>
+            <h3>Einstein's Photoelectric Equation</h3>
+            <p>
+              Rearranging the energy balance yields the celebrated equation:
+            </p>
+            <div class="formula-box highlight-box">
+              <div class="math-eq large-eq">
+                <span class="math-var">K</span><sub class="math-sub">max</sub> = <span class="math-var">h</span><span class="math-var">f</span> &minus; <span class="math-var">&phi;</span>
+              </div>
+            </div>
+            <p>
+              Expressing work function in terms of threshold frequency <code>&phi; = h f₀</code>:
+            </p>
+            <div class="formula-box">
+              <div class="math-eq">
+                <span class="math-var">K</span><sub class="math-sub">max</sub> = <span class="math-var">h</span>(<span class="math-var">f</span> &minus; <span class="math-var">f</span><sub class="math-sub">0</sub>) = <span class="math-var">h</span><span class="math-var">c</span> <span class="math-bracket">[</span> <span class="math-frac"><span class="math-num">1</span><span class="math-den"><span class="math-var">&lambda;</span></span></span> &minus; <span class="math-frac"><span class="math-num">1</span><span class="math-den"><span class="math-var">&lambda;</span><sub class="math-sub">0</sub></span></span> <span class="math-bracket">]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="derivation-card glass-panel">
+            <div class="step-badge">POSTULATE 4</div>
+            <h3>Connection to Stopping Potential (Vₛ)</h3>
+            <p>
+              If an opposing electric retarding potential <code>Vₛ</code> is established between the emitter and collector, the most energetic electron is brought to rest just before reaching the collector:
+            </p>
+            <div class="formula-box">
+              <div class="math-eq">
+                <span class="math-var">e</span><span class="math-var">V</span><sub class="math-sub">s</sub> = <span class="math-var">K</span><sub class="math-sub">max</sub> = <span class="math-var">h</span><span class="math-var">f</span> &minus; <span class="math-var">&phi;</span>
+              </div>
+            </div>
+            <div class="formula-box highlight-box">
+              <div class="math-eq large-eq">
+                <span class="math-var">V</span><sub class="math-sub">s</sub> = <span class="math-paren">(</span><span class="math-frac"><span class="math-num"><span class="math-var">h</span></span><span class="math-den"><span class="math-var">e</span></span></span><span class="math-paren">)</span><span class="math-var">f</span> &minus; <span class="math-paren">(</span><span class="math-frac"><span class="math-num"><span class="math-var">&phi;</span></span><span class="math-den"><span class="math-var">e</span></span></span><span class="math-paren">)</span>
+              </div>
+            </div>
+            <div class="scientific-note">
+              <strong>Key Physical Deduction:</strong> This is a straight-line equation of the form <code>y = mx + c</code>, where the slope <code>m = h/e</code> is a universal constant for all metals, and the x-intercept is exactly the threshold frequency <code>f₀</code>!
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Energy Balance Calculator / Explanatory Widget -->
+        <div class="interactive-calc-column">
+          <div class="calc-panel glass-panel">
+            <div class="calc-header">
+              <span class="card-tag">INTERACTIVE ENERGY LEVEL SIMULATOR</span>
+              <h4>Live Quantum Balance Breakdown</h4>
+            </div>
+
+            <!-- Energy Level Diagram Canvas -->
+            <div class="energy-diagram-wrapper">
+              <canvas id="energy-level-canvas" width="460" height="280"></canvas>
+            </div>
+
+            <div class="calc-readouts">
+              <div class="calc-row">
+                <span class="calc-label">Photon Energy (hf):</span>
+                <span class="calc-val text-cyan" id="demo-photon-e">2.48 eV</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-label">Binding Energy (&Phi;):</span>
+                <span class="calc-val text-amber" id="demo-work-func">2.30 eV (K)</span>
+              </div>
+              <div class="calc-divider"></div>
+              <div class="calc-row highlighted-row">
+                <span class="calc-label">Maximum Kinetic Energy (K<sub>max</sub>):</span>
+                <span class="calc-val text-emerald" id="demo-kmax">0.18 eV</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-label">Stopping Potential (V<sub>s</sub>):</span>
+                <span class="calc-val text-purple" id="demo-vs">0.18 V</span>
+              </div>
+            </div>
+
+            <div class="quantum-insight-box" id="calc-insight">
+              <div class="insight-icon">&#9432;</div>
+              <div class="insight-text" id="calc-insight-text">
+                Photon energy (2.48 eV) exceeds work function (2.30 eV). Electron escapes with 0.18 eV kinetic energy!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 & 5: VIRTUAL EXPERIMENT & SIMULATION (MAIN LABORATORY) -->
+    <section id="experiment" class="section-container lab-section">
+      <div class="section-header">
+        <span class="section-kicker">INTERACTIVE SCIENTIFIC APPARATUS</span>
+        <h2 class="section-title">Virtual Photoelectric Laboratory</h2>
+        <p class="section-subtitle">
+          Manipulate frequency, intensity, target metal, and retarding potential in real-time. Observe animated photon packets, liberated photoelectrons, and live circuit telemetry.
+        </p>
+      </div>
+
+      <!-- Laboratory Grid: Apparatus & Controls -->
+      <div class="lab-main-layout">
+        
+        <!-- Left: Virtual Phototube Apparatus Canvas Viewport -->
+        <div class="lab-viewport-container glass-panel">
+          <div class="viewport-toolbar">
+            <div class="apparatus-status">
+              <span class="status-indicator-dot" id="emission-status-dot"></span>
+              <span class="status-title" id="emission-status-label">Photoemission Occurring</span>
+            </div>
+            <div class="apparatus-controls">
+              <button class="btn btn-sm btn-outline" id="btn-pause-sim" title="Pause or Resume Simulation">
+                <span id="btn-pause-icon">&#9646;&#9646;</span>
+                <span id="btn-pause-text">Pause</span>
+              </button>
+              <button class="btn btn-sm btn-outline" id="btn-reset-sim" title="Reset to Defaults">
+                <span>&#8634;</span>
+                <span>Reset</span>
+              </button>
+              <button class="btn btn-sm btn-outline" id="btn-toggle-sound" title="Toggle Lab Sound Effects">
+                <span id="sound-icon">&#128266;</span>
+                <span id="sound-text">Sound ON</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Apparatus Canvas -->
+          <div class="canvas-wrapper" id="canvas-container">
+            <canvas id="photoelectric-canvas" width="900" height="460"></canvas>
+            
+            <!-- Real-time Banner for Sub-Threshold Condition -->
+            <div class="subthreshold-banner hidden" id="subthreshold-banner">
+              <div class="banner-icon">&#9888;</div>
+              <div class="banner-content">
+                <strong>NO PHOTOELECTRIC EMISSION (f &lt; f₀)</strong>
+                <p id="subthreshold-explanation">
+                  Photon energy (hf) is strictly less than the metal's work function (&Phi;). No electrons can be ejected, even if intensity is 100%!
+                </p>
+              </div>
+            </div>
+
+            <!-- Canvas Overlay Tooltips & Gauges -->
+            <div class="apparatus-overlay-legend">
+              <span class="legend-item"><span class="legend-swatch swatch-photon"></span> Incident Photons (hf)</span>
+              <span class="legend-item"><span class="legend-swatch swatch-electron"></span> Emitted Photoelectrons</span>
+              <span class="legend-item"><span class="legend-swatch swatch-plate"></span> Emitter & Collector</span>
+            </div>
+          </div>
+
+          <!-- Live Circuit Readout Meters -->
+          <div class="circuit-readout-meters">
+            <div class="meter-card">
+              <span class="meter-title">DIGITAL MICRO-AMMETER</span>
+              <div class="meter-value text-cyan" id="meter-current">
+                <span class="val" id="disp-photocurrent">42.5</span>
+                <span class="unit">&mu;A</span>
+              </div>
+              <span class="meter-sub" id="disp-current-percent">Current: 42.5%</span>
+            </div>
+
+            <div class="meter-card">
+              <span class="meter-title">TUBE VOLTMETER</span>
+              <div class="meter-value text-amber" id="meter-voltage">
+                <span class="val" id="disp-tube-voltage">0.00</span>
+                <span class="unit">V</span>
+              </div>
+              <span class="meter-sub" id="disp-voltage-mode">Neutral (0 V)</span>
+            </div>
+
+            <div class="meter-card">
+              <span class="meter-title">STOPPING POTENTIAL (Vₛ)</span>
+              <div class="meter-value text-purple" id="meter-stopping">
+                <span class="val" id="disp-stopping-pot">0.18</span>
+                <span class="unit">V</span>
+              </div>
+              <span class="meter-sub">e V<sub>s</sub> = K<sub>max</sub></span>
+            </div>
+
+            <div class="meter-card">
+              <span class="meter-title">MAX KINETIC ENERGY</span>
+              <div class="meter-value text-emerald" id="meter-kmax">
+                <span class="val" id="disp-kmax-val">0.18</span>
+                <span class="unit">eV</span>
+              </div>
+              <span class="meter-sub" id="disp-kmax-joules">2.88 &times; 10⁻²⁰ J</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Experimental Control Panel & Sliders -->
+        <div class="lab-controls-panel glass-panel">
+          <div class="panel-header">
+            <span class="card-tag">INSTRUMENT CONTROLS</span>
+            <h3>Experimental Parameters</h3>
+          </div>
+
+          <!-- Target Metal Selector -->
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="metal-select"><strong>1. Target Photosensitive Metal</strong></label>
+              <span class="badge-tag" id="current-metal-tag">Potassium (K)</span>
+            </div>
+            <div class="metal-buttons-grid" id="metal-button-group">
+              <button type="button" class="btn-metal" data-metal="Cs" data-phi="2.14">
+                <span class="metal-sym">Cs</span>
+                <span class="metal-name">Cesium</span>
+                <span class="metal-phi">2.14 eV</span>
+              </button>
+              <button type="button" class="btn-metal active" data-metal="K" data-phi="2.30">
+                <span class="metal-sym">K</span>
+                <span class="metal-name">Potassium</span>
+                <span class="metal-phi">2.30 eV</span>
+              </button>
+              <button type="button" class="btn-metal" data-metal="Na" data-phi="2.36">
+                <span class="metal-sym">Na</span>
+                <span class="metal-name">Sodium</span>
+                <span class="metal-phi">2.36 eV</span>
+              </button>
+              <button type="button" class="btn-metal" data-metal="Zn" data-phi="4.31">
+                <span class="metal-sym">Zn</span>
+                <span class="metal-name">Zinc</span>
+                <span class="metal-phi">4.31 eV</span>
+              </button>
+              <button type="button" class="btn-metal" data-metal="Cu" data-phi="4.65">
+                <span class="metal-sym">Cu</span>
+                <span class="metal-name">Copper</span>
+                <span class="metal-phi">4.65 eV</span>
+              </button>
+              <button type="button" class="btn-metal" data-metal="custom" data-phi="3.00">
+                <span class="metal-sym">&Phi;</span>
+                <span class="metal-name">Custom</span>
+                <span class="metal-phi">Variable</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Work Function Fine Slider (Enabled especially for Custom) -->
+          <div class="control-group slider-group">
+            <div class="control-label-row">
+              <label for="work-function-slider">Work Function (&Phi;):</label>
+              <span class="slider-display-val text-amber" id="slider-phi-val">2.30 eV</span>
+            </div>
+            <input type="range" id="work-function-slider" min="1.50" max="4.80" step="0.01" value="2.30" class="scientific-slider">
+            <div class="slider-scale">
+              <span>1.5 eV</span>
+              <span>Threshold f₀: <strong id="disp-calc-f0">5.56 &times; 10¹⁴ Hz</strong></span>
+              <span>4.8 eV</span>
+            </div>
+          </div>
+
+          <!-- Radiation Frequency Slider -->
+          <div class="control-group slider-group">
+            <div class="control-label-row">
+              <label for="frequency-slider"><strong>2. Incident Frequency (f):</strong></label>
+              <span class="slider-display-val text-cyan" id="slider-freq-val">6.00 &times; 10¹⁴ Hz</span>
+            </div>
+            <input type="range" id="frequency-slider" min="3.00" max="10.00" step="0.05" value="6.00" class="scientific-slider freq-slider-track">
+            <div class="slider-scale">
+              <span>3.00 &times; 10¹⁴ Hz (IR)</span>
+              <span id="spectral-color-badge" class="spectrum-badge">Green (500 nm)</span>
+              <span>10.00 &times; 10¹⁴ Hz (UV)</span>
+            </div>
+            <div class="quick-preset-chips">
+              <button class="chip-btn" data-freq="4.30">Red (4.3&times;10¹⁴)</button>
+              <button class="chip-btn" data-freq="5.50">Yellow (5.5&times;10¹⁴)</button>
+              <button class="chip-btn active" data-freq="6.00">Green (6.0&times;10¹⁴)</button>
+              <button class="chip-btn" data-freq="7.20">Blue (7.2&times;10¹⁴)</button>
+              <button class="chip-btn" data-freq="9.00">UV (9.0&times;10¹⁴)</button>
+            </div>
+          </div>
+
+          <!-- Light Intensity Slider -->
+          <div class="control-group slider-group">
+            <div class="control-label-row">
+              <label for="intensity-slider"><strong>3. Light Intensity (Photon Flux):</strong></label>
+              <span class="slider-display-val text-emerald" id="slider-intensity-val">60%</span>
+            </div>
+            <input type="range" id="intensity-slider" min="0" max="100" step="1" value="60" class="scientific-slider">
+            <div class="slider-scale">
+              <span>0% (Darkness)</span>
+              <span>Controls Photon Count / Photocurrent</span>
+              <span>100% (High Flux)</span>
+            </div>
+          </div>
+
+          <!-- Tube Applied Voltage Slider (Accelerating / Retarding) -->
+          <div class="control-group slider-group">
+            <div class="control-label-row">
+              <label for="voltage-slider"><strong>4. Collector Tube Voltage (V):</strong></label>
+              <span class="slider-display-val" id="slider-voltage-val">0.00 V</span>
+            </div>
+            <input type="range" id="voltage-slider" min="-3.00" max="3.00" step="0.05" value="0.00" class="scientific-slider voltage-slider-track">
+            <div class="slider-scale">
+              <span>-3.0 V (Retarding)</span>
+              <button class="btn btn-xs btn-outline" id="btn-snap-stopping" title="Snap directly to Stopping Potential">Set to &minus;V<sub>s</sub></button>
+              <span>+3.0 V (Accelerating)</span>
+            </div>
+          </div>
+
+          <!-- Experimental Actions -->
+          <div class="control-actions-row">
+            <button class="btn btn-primary btn-block" id="btn-record-observation">
+              <span>&#128221; Record Observation</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 10: COMPREHENSIVE LIVE READOUT PANEL -->
+      <div class="live-readout-strip glass-panel">
+        <div class="readout-header">
+          <span class="card-tag">LIVE TELEMETRY & PHYSICAL CALCULATIONS</span>
+          <span class="sync-badge"><span class="live-pulse"></span> Dynamic Solver Active</span>
+        </div>
+
+        <div class="readout-metrics-grid">
+          <div class="metric-box">
+            <span class="metric-label">Photon Energy (E = hf)</span>
+            <span class="metric-value" id="ro-photon-energy">2.48 eV</span>
+            <span class="metric-sub" id="ro-photon-joules">3.97 &times; 10⁻¹⁹ J</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Work Function (&Phi;)</span>
+            <span class="metric-value text-amber" id="ro-work-function">2.30 eV</span>
+            <span class="metric-sub" id="ro-metal-name">Potassium (K)</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Threshold Frequency (f₀)</span>
+            <span class="metric-value" id="ro-threshold-freq">5.56 &times; 10¹⁴ Hz</span>
+            <span class="metric-sub" id="ro-threshold-wl">&lambda;₀ = 539 nm</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Incident Wavelength (&lambda;)</span>
+            <span class="metric-value text-cyan" id="ro-wavelength">500 nm</span>
+            <span class="metric-sub" id="ro-spectral-band">Visible Green</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Max Kinetic Energy (K<sub>max</sub>)</span>
+            <span class="metric-value text-emerald" id="ro-kmax">0.18 eV</span>
+            <span class="metric-sub" id="ro-electron-velocity">v<sub>max</sub> = 2.52 &times; 10⁵ m/s</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Stopping Potential (V<sub>s</sub>)</span>
+            <span class="metric-value text-purple" id="ro-stopping-pot">0.18 V</span>
+            <span class="metric-sub">K<sub>max</sub> / e</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Relative Photocurrent</span>
+            <span class="metric-value" id="ro-photocurrent">42.5 &mu;A</span>
+            <span class="metric-sub" id="ro-current-status">Saturated</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-label">Photoemission State</span>
+            <span class="metric-badge status-active" id="ro-emission-state">&#10003; Emission Occurring</span>
+            <span class="metric-sub" id="ro-emission-condition">hf &gt; &Phi;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: EXPERIMENTAL OBSERVATIONS (APPEARS FIRST) -->
+    <section id="observations" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">LABORATORY RECORD BOOK</span>
+        <h2 class="section-title">Experimental Observations & Tabulations</h2>
+        <p class="section-subtitle">
+          Record experimental trials under varying frequencies and intensities. Click any observation row to dynamically inspect its corresponding scientific graph.
+        </p>
+      </div>
+
+      <div class="observations-container glass-panel">
+        <div class="table-actions-toolbar">
+          <div class="table-title-group">
+            <span class="card-tag">LOGGED TRIALS</span>
+            <span class="count-badge" id="obs-count-badge">0 Observations</span>
+          </div>
+
+          <div class="table-btn-group">
+            <button class="btn btn-sm btn-primary" id="btn-record-obs-table">
+              <span>+ Record Current State</span>
+            </button>
+            <button class="btn btn-sm btn-outline" id="btn-auto-sample-table">
+              <span>&#9881; Auto-Sample 5 Frequencies</span>
+            </button>
+            <button class="btn btn-sm btn-outline" id="btn-export-csv">
+              <span>&#128190; Export to CSV</span>
+            </button>
+            <button class="btn btn-sm btn-danger-outline" id="btn-clear-table">
+              <span>&#128465; Clear Table</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="academic-table" id="observation-table">
+            <thead>
+              <tr>
+                <th>Trial #</th>
+                <th>Target Metal</th>
+                <th>Frequency (f)<br><span class="unit">&times; 10¹⁴ Hz</span></th>
+                <th>Wavelength (&lambda;)<br><span class="unit">nm</span></th>
+                <th>Intensity<br><span class="unit">%</span></th>
+                <th>Photon Energy (E)<br><span class="unit">eV</span></th>
+                <th>Emission?</th>
+                <th>K<sub>max</sub><br><span class="unit">eV</span></th>
+                <th>Stopping Pot. (V<sub>s</sub>)<br><span class="unit">V</span></th>
+                <th>Photocurrent<br><span class="unit">&mu;A</span></th>
+                <th>Graph / Action</th>
+              </tr>
+            </thead>
+            <tbody id="observation-table-body">
+              <tr class="empty-table-placeholder">
+                <td colspan="11" class="text-center">
+                  <em>No observations recorded yet. Adjust controls in the Virtual Lab and click "Record Observation" or "Auto-Sample 5 Frequencies".</em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table Estimation Summary -->
+        <div class="table-summary-bar">
+          <div class="summary-metric">
+            <span class="s-label">Active Work Function:</span>
+            <span class="s-val text-amber" id="summary-workfunc">2.30 eV</span>
+          </div>
+          <div class="summary-metric">
+            <span class="s-label">Active Threshold Frequency:</span>
+            <span class="s-val text-cyan" id="summary-f0">5.56 &times; 10¹⁴ Hz</span>
+          </div>
+          <div class="summary-metric">
+            <span class="s-label">Theoretical Slope (h):</span>
+            <span class="s-val text-emerald">4.136 &times; 10⁻¹⁵ eV&middot;s</span>
+          </div>
+          <div class="summary-metric">
+            <span class="s-label">Estimated h from Observations:</span>
+            <span class="s-val text-purple" id="summary-calc-h">&mdash;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: GRAPHS & ANALYSIS (APPEARS IMMEDIATELY AFTER OBSERVATIONS) -->
+    <section id="graphs" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">MATHEMATICAL VERIFICATION</span>
+        <h2 class="section-title">Experimental Graphs & Data Analysis</h2>
+        <p class="section-subtitle">
+          Real-time scientific plots mapped dynamically to current parameters or selected observations. Observe how threshold frequency, slope (h or h/e), and saturation current behave.
+        </p>
+      </div>
+
+      <div class="graphs-container glass-panel">
+        <!-- Dynamic Selected Observation Alert Banner -->
+        <div class="active-graph-banner hidden" id="active-graph-banner">
+          <div class="banner-left">
+            <span class="banner-pulse"></span>
+            <span class="banner-text" id="active-graph-text">Plotting Observation #1 Data</span>
+          </div>
+          <button class="btn btn-xs btn-outline" id="btn-reset-graph-live" title="Switch back to live lab parameters">
+            <span>&#8634; Show Live Lab Parameters</span>
+          </button>
+        </div>
+
+        <div class="graph-nav-toolbar">
+          <div class="graph-tabs" role="tablist">
+            <button class="graph-tab active" data-graph="kmax-vs-freq" id="tab-graph-1">
+              <span>Graph 1: K<sub>max</sub> vs. Frequency (f)</span>
+            </button>
+            <button class="graph-tab" data-graph="vs-vs-freq" id="tab-graph-2">
+              <span>Graph 2: Stopping Potential (V<sub>s</sub>) vs. Frequency</span>
+            </button>
+            <button class="graph-tab" data-graph="current-vs-intensity" id="tab-graph-3">
+              <span>Graph 3: Photocurrent (I) vs. Intensity</span>
+            </button>
+            <button class="graph-tab" data-graph="current-vs-voltage" id="tab-graph-4">
+              <span>Graph 4: I-V Characteristic Curve</span>
+            </button>
+          </div>
+
+          <div class="graph-actions">
+            <button class="btn btn-sm btn-outline" id="btn-export-graph" title="Download High-Res Graph as PNG">
+              <span>&#128247; Export PNG</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="graph-viewport-wrapper">
+          <div class="canvas-chart-holder">
+            <canvas id="scientific-chart-canvas" width="960" height="440"></canvas>
+          </div>
+          
+          <div class="graph-analysis-sidebar">
+            <div class="sidebar-header">
+              <span class="card-tag">PHYSICAL INTERPRETATION</span>
+              <h4 id="graph-analysis-title">K<sub>max</sub> vs Frequency (f)</h4>
+            </div>
+
+            <div class="graph-interpretation-body" id="graph-analysis-content">
+              <!-- Dynamically populated by graphs.js -->
+              <p>
+                <strong>Equation:</strong> <code>K<sub>max</sub> = hf &minus; &phi;</code>
+              </p>
+              <ul class="analysis-points">
+                <li><strong>Slope:</strong> Represents Planck's constant <code>h = 4.136 &times; 10⁻¹⁵ eV&middot;s</code>. The slope is universal and identical for all metals.</li>
+                <li><strong>X-Intercept:</strong> Represents the threshold frequency <code>f₀ = &phi; / h</code>. For frequencies below <code>f₀</code>, K<sub>max</sub> is strictly zero.</li>
+                <li><strong>Negative Y-Intercept:</strong> Represents the negative of the work function <code>&minus;&phi;</code>.</li>
+                <li><strong>Current Operating Point:</strong> Marked by the glowing indicator dot on the line.</li>
+              </ul>
+            </div>
+
+            <div class="graph-live-data-badge">
+              <div class="g-stat-row">
+                <span>Active Target Metal:</span>
+                <strong id="g-stat-metal" class="text-amber">Potassium (2.30 eV)</strong>
+              </div>
+              <div class="g-stat-row">
+                <span>Threshold Frequency f₀:</span>
+                <strong id="g-stat-f0" class="text-cyan">5.56 &times; 10¹⁴ Hz</strong>
+              </div>
+              <div class="g-stat-row">
+                <span>Current Point (X, Y):</span>
+                <strong id="g-stat-coord" class="text-emerald">(6.00 &times; 10¹⁴ Hz, 0.18 eV)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 14: INTERACTIVE CHALLENGE / EXPERIMENT MODE -->
+    <section id="challenges" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">INTERACTIVE PRACTICAL EXAMINATION</span>
+        <h2 class="section-title">Laboratory Challenges & Problem Solving</h2>
+        <p class="section-subtitle">
+          Test your experimental prowess with 4 real-world laboratory tasks. Configure apparatus parameters to meet required experimental conditions.
+        </p>
+      </div>
+
+      <div class="challenges-wrapper glass-panel">
+        <div class="challenge-navigation" id="challenge-tabs">
+          <button class="challenge-tab active" data-task="0">
+            <span class="tab-num">Task 1</span>
+            <span class="tab-title">Find Threshold Frequency</span>
+          </button>
+          <button class="challenge-tab" data-task="1">
+            <span class="tab-num">Task 2</span>
+            <span class="tab-title">Target Kinetic Energy (0.50 eV)</span>
+          </button>
+          <button class="challenge-tab" data-task="2">
+            <span class="tab-num">Task 3</span>
+            <span class="tab-title">Sub-Threshold Intensity Fallacy</span>
+          </button>
+          <button class="challenge-tab" data-task="3">
+            <span class="tab-num">Task 4</span>
+            <span class="tab-title">Stopping Potential for Zinc UV</span>
+          </button>
+        </div>
+
+        <div class="challenge-content-body">
+          <div class="challenge-card-header">
+            <div class="challenge-title-group">
+              <span class="card-tag" id="task-badge">TASK 1 OF 4</span>
+              <h3 id="task-headline">Find the Threshold Frequency of Potassium</h3>
+            </div>
+            <div class="task-status-pill" id="task-status-pill">
+              <span>Status: Incomplete</span>
+            </div>
+          </div>
+
+          <p class="challenge-prompt" id="task-description">
+            Potassium has a work function of <strong>&Phi; = 2.30 eV</strong>. Adjust the frequency slider in the laboratory until photoelectric emission <em>just begins</em> (within &plusmn; 0.15 &times; 10¹⁴ Hz of the threshold frequency f₀).
+          </p>
+
+          <div class="challenge-hints-box">
+            <strong>Hint:</strong> <span id="task-hint">Threshold frequency formula is f₀ = &Phi; / h. For 2.30 eV, calculate f₀ = 2.30 / 4.136 &times; 10⁻¹⁵ &approx; 5.56 &times; 10¹⁴ Hz.</span>
+          </div>
+
+          <!-- Live Checker Progress -->
+          <div class="task-checker-box">
+            <div class="checker-row">
+              <span>Target Metal:</span>
+              <strong id="task-target-metal">Potassium (K, &Phi; = 2.30 eV)</strong>
+            </div>
+            <div class="checker-row">
+              <span>Your Current Frequency:</span>
+              <strong id="task-user-val" class="text-cyan">6.00 &times; 10¹⁴ Hz</strong>
+            </div>
+            <div class="checker-row">
+              <span>Required Condition:</span>
+              <strong id="task-required-cond">5.45 &times; 10¹⁴ &le; f &le; 5.70 &times; 10¹⁴ Hz</strong>
+            </div>
+          </div>
+
+          <div class="challenge-actions">
+            <button class="btn btn-primary" id="btn-verify-task">
+              <span>&#10004; Check Solution</span>
+            </button>
+            <a href="#experiment" class="btn btn-secondary" id="btn-goto-lab">
+              <span>&larr; Adjust Parameters in Lab</span>
+            </a>
+            <button class="btn btn-outline" id="btn-reset-task">
+              <span>Reset Challenge</span>
+            </button>
+          </div>
+
+          <!-- Task Result Feedback Alert -->
+          <div class="task-feedback hidden" id="task-feedback-alert"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 15: REAL-WORLD APPLICATIONS -->
+    <section id="applications" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">ENGINEERING & MODERN TECHNOLOGY</span>
+        <h2 class="section-title">Real-World Applications of the Photoelectric Effect</h2>
+        <p class="section-subtitle">
+          From everyday automatic supermarket doors to deep-space gamma detectors, explore modern engineering systems powered by photoemission.
+        </p>
+      </div>
+
+      <div class="applications-grid">
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-cyan">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M8 8l8 8M16 8l-8 8"/></svg>
+          </div>
+          <h3>Photocells & Optical Sensors</h3>
+          <p>
+            Phototubes convert incident optical signals directly into measurable electrical current. Used in precision spectrophotometry, lux meters, and automated street-light switching.
+          </p>
+          <span class="app-tag">Optoelectronics</span>
+        </div>
+
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-amber">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          </div>
+          <h3>Automatic Doors & Safety Barriers</h3>
+          <p>
+            An uninterrupted light beam falls continuously on a photocell. When an obstacle or person interrupts the beam, photocurrent halts, triggering electromagnetic relays to open doors or halt dangerous factory machinery.
+          </p>
+          <span class="app-tag">Industrial Automation</span>
+        </div>
+
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-emerald">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>
+          </div>
+          <h3>Camera Light Meters & Exposure Control</h3>
+          <p>
+            Modern cameras utilize solid-state photodiodes and photocells to sample scene luminance, automatically computing optimal shutter speeds and aperture f-numbers for balanced exposure.
+          </p>
+          <span class="app-tag">Digital Imaging</span>
+        </div>
+
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-purple">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Photomultiplier Tubes (PMTs)</h3>
+          <p>
+            An incident single photon ejects a primary photoelectron, which strikes a succession of dynodes, causing exponential secondary electron emission. Delivers gains up to 10⁶ &ndash; 10⁸ in nuclear medicine (PET scans) and particle astrophysics.
+          </p>
+          <span class="app-tag">Nuclear Physics & Medical Imaging</span>
+        </div>
+
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-rose">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Night Vision Devices & Image Intensifiers</h3>
+          <p>
+            Photocathodes convert invisible infrared photons into electron beams. Microchannel plates amplify the electron flux, which then bombards a phosphor screen to render bright green visible nocturnal images.
+          </p>
+          <span class="app-tag">Defense & Aerospace</span>
+        </div>
+
+        <div class="app-card glass-panel">
+          <div class="app-icon-wrap icon-blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <h3>Photovoltaics & Solar Power</h3>
+          <p>
+            While related to the internal photovoltaic effect in p-n junctions, solar cells operate on the identical quantum principle of electron excitation across energy bandgaps by incident sunlight quanta.
+          </p>
+          <span class="app-tag">Renewable Energy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 16: HISTORICAL TIMELINE -->
+    <section id="timeline" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">CHRONOLOGY OF DISCOVERY</span>
+        <h2 class="section-title">Historical Evolution of Quantum Light Theory</h2>
+        <p class="section-subtitle">
+          How experimental anomalies shattered classical electromagnetism and gave birth to modern quantum physics.
+        </p>
+      </div>
+
+      <div class="timeline-container glass-panel">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-cyan">1887</span>
+            <h4>Heinrich Hertz Discovers the Phenomenon</h4>
+            <p>
+              While generating radio waves using spark-gap transmitters, Hertz noticed that electric sparks passed much more readily between electrodes when illuminated by ultraviolet light from an electric arc.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-amber">1899</span>
+            <h4>J.J. Thomson Identifies Emitted Particles as Electrons</h4>
+            <p>
+              Following his 1897 discovery of the electron, J.J. Thomson measured the charge-to-mass ratio (e/m) of particles liberated by ultraviolet light on metal plates, proving they were identical to cathode ray electrons.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-emerald">1900</span>
+            <h4>Max Planck Proposes Quantized Energy (E = nh&nu;)</h4>
+            <p>
+              To solve the ultraviolet catastrophe in blackbody radiation, Planck proposed that atomic oscillators emit and absorb energy only in discrete integer multiples of <code>h&nu;</code>, introducing Planck's constant <code>h</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-purple">1905</span>
+            <h4>Albert Einstein Formulates Photon Theory</h4>
+            <p>
+              In his Annus Mirabilis paper, Einstein daringly posited that light itself is quantized into packets (photons). He published <code>K<sub>max</sub> = hf &minus; &Phi;</code>, solving all experimental paradoxes of the photoelectric effect.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-rose">1916</span>
+            <h4>Robert Millikan's Definitive Experiments</h4>
+            <p>
+              Initially attempting to disprove Einstein's photon hypothesis, Millikan constructed a high-vacuum "machine shop in vacuo" to clean alkali metals and measured stopping potentials with unprecedented precision, definitively confirming Einstein's linear law and measuring <code>h</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-year text-cyan">1921</span>
+            <h4>Einstein Awarded the Nobel Prize in Physics</h4>
+            <p>
+              Albert Einstein was awarded the 1921 Nobel Prize in Physics specifically <em>"for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect."</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 17: VIVA QUESTIONS -->
+    <section id="viva-quiz" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">EXAMINATION ASSESSMENT</span>
+        <h2 class="section-title">Viva Questions</h2>
+        <p class="section-subtitle">
+          Test your conceptual understanding with 10 carefully designed university viva questions. Receive immediate grading, detailed scientific rationale, and performance scoring.
+        </p>
+      </div>
+
+      <div class="quiz-wrapper glass-panel">
+        <div class="quiz-top-bar">
+          <div class="quiz-progress-info">
+            <span class="card-tag">EXAMINATION IN PROGRESS</span>
+            <span class="quiz-counter" id="quiz-question-counter">Question 1 of 10</span>
+          </div>
+          <div class="quiz-score-pill">
+            <span>Score: <strong id="live-quiz-score">0</strong> / 10</span>
+          </div>
+        </div>
+
+        <!-- Quiz Container (Active Questions or Results) -->
+        <div id="quiz-body-container">
+          <div class="quiz-question-card" id="quiz-question-card">
+            <h3 class="quiz-question-text" id="quiz-question-title">
+              1. What physical quantity strictly determines whether photoelectric emission occurs from a given metal?
+            </h3>
+
+            <div class="quiz-options-list" id="quiz-options-list">
+              <!-- Options rendered dynamically by quiz.js -->
+            </div>
+
+            <div class="quiz-feedback-box hidden" id="quiz-feedback-box">
+              <div class="feedback-status" id="quiz-feedback-status"></div>
+              <div class="feedback-explanation" id="quiz-feedback-text"></div>
+            </div>
+
+            <div class="quiz-card-footer">
+              <button class="btn btn-outline" id="btn-quiz-prev" disabled>
+                <span>&larr; Previous</span>
+              </button>
+              <button class="btn btn-primary" id="btn-quiz-next">
+                <span>Submit & Next &rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Completion Screen (Hidden by default) -->
+        <div class="quiz-results-card hidden" id="quiz-results-card">
+          <div class="results-header">
+            <div class="results-trophy" id="results-badge">&#127891;</div>
+            <h3 id="results-verdict">Outstanding Examination Performance!</h3>
+            <p id="results-summary-text">You scored 10 out of 10 (100%).</p>
+          </div>
+
+          <div class="results-stats-row">
+            <div class="stat-badge">
+              <span class="stat-num text-emerald" id="res-correct-count">10</span>
+              <span class="stat-name">Correct</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-num text-rose" id="res-incorrect-count">0</span>
+              <span class="stat-name">Incorrect</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-num text-cyan" id="res-percentage">100%</span>
+              <span class="stat-name">Accuracy</span>
+            </div>
+          </div>
+
+          <div class="results-actions">
+            <button class="btn btn-primary" id="btn-retake-quiz">
+              <span>&#8634; Retake Viva Quiz</span>
+            </button>
+            <a href="#experiment" class="btn btn-secondary">
+              <span>Return to Virtual Lab</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 18: CONCLUSION -->
+    <section id="conclusion" class="section-container">
+      <div class="section-header">
+        <span class="section-kicker">SYNTHESIS & SCIENTIFIC FINDINGS</span>
+        <h2 class="section-title">Key Experimental Findings & Conclusions</h2>
+        <p class="section-subtitle">
+          Summary of the five foundational laws governing the photoelectric effect deduced from experiment and explained by quantum mechanics.
+        </p>
+      </div>
+
+      <div class="conclusion-cards-grid">
+        <div class="conclusion-card glass-panel">
+          <div class="conclusion-badge">LAW 1</div>
+          <h3>Existence of Threshold Frequency</h3>
+          <p>
+            Photoelectric emission is an all-or-nothing threshold phenomenon. For any given metal, emission takes place if and only if the incident frequency <code>f &ge; f₀</code> (or wavelength <code>&lambda; &le; &lambda;₀</code>). Below this frequency, photoelectrons are never emitted regardless of beam intensity.
+          </p>
+        </div>
+
+        <div class="conclusion-card glass-panel">
+          <div class="conclusion-badge">LAW 2</div>
+          <h3>Instantaneous Quantum Mechanism</h3>
+          <p>
+            There is zero perceptible time lag (experimentally measured to be &lt; 10⁻⁹ s) between the arrival of radiation and the liberation of photoelectrons. The absorption of a photon by a conduction electron is a discrete, single-step collision event.
+          </p>
+        </div>
+
+        <div class="conclusion-card glass-panel">
+          <div class="conclusion-badge">LAW 3</div>
+          <h3>Energy Independence from Intensity</h3>
+          <p>
+            The maximum kinetic energy <code>K<sub>max</sub></code> and stopping potential <code>V<sub>s</sub></code> of the emitted photoelectrons are strictly independent of the incident radiation intensity. Intensity only measures photon flux, not individual photon energy.
+          </p>
+        </div>
+
+        <div class="conclusion-card glass-panel">
+          <div class="conclusion-badge">LAW 4</div>
+          <h3>Linear Dependence on Frequency</h3>
+          <p>
+            Above threshold, the maximum kinetic energy <code>K<sub>max</sub></code> increases purely linearly with radiation frequency: <code>K<sub>max</sub> = hf &minus; &Phi;</code>. The slope of this line is universally equal to Planck's constant <code>h</code> for all metals.
+          </p>
+        </div>
+
+        <div class="conclusion-card glass-panel">
+          <div class="conclusion-badge">LAW 5</div>
+          <h3>Photocurrent Proportionality</h3>
+          <p>
+            Provided the incident frequency exceeds threshold (<code>f &gt; f₀</code>), the saturation photocurrent is directly proportional to the incident light intensity. A doubling of intensity doubles the number of incident photons, ejecting twice as many electrons per second.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SECTION 19: PROJECT INFORMATION & FOOTER -->
+  <footer class="academic-footer" id="project-info">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-text large-brand">THE PHOTOELECTRIC <span class="brand-accent">EFFECT</span></div>
+          <p class="footer-sub">Interactive Virtual Physics Laboratory</p>
+          <p class="footer-desc">
+            A comprehensive web-based computational physics simulation designed for B.Tech First-Year Engineering Physics laboratory demonstration and viva examination.
+          </p>
+        </div>
+
+        <!-- Academic Submission Card with Verified Project Details -->
+        <div class="academic-credits-card glass-panel">
+          <div class="credits-card-header">
+            <span class="card-tag">PROJECT SUBMISSION DETAILS</span>
+            <span class="univ-badge">B.Tech First Year &bull; Engineering Physics</span>
+          </div>
+          
+          <div class="project-institution-banner">
+            <div class="inst-item">
+              <span class="inst-label">UNIVERSITY</span>
+              <strong class="inst-val text-cyan">VIT CHENNAI</strong>
+            </div>
+            <div class="inst-item">
+              <span class="inst-label">SCHOOL</span>
+              <strong class="inst-val text-amber">SCOPE</strong>
+            </div>
+            <div class="inst-item">
+              <span class="inst-label">DEPT.</span>
+              <strong class="inst-val text-emerald">CSE CORE</strong>
+            </div>
+          </div>
+
+          <div class="team-members-container">
+            <span class="team-header-label">PROJECT TEAM MEMBERS</span>
+            <div class="team-cards-grid">
+              <div class="student-card">
+                <span class="student-num">01</span>
+                <div class="student-info">
+                  <strong class="student-name">HARSHINI V</strong>
+                  <span class="student-reg">26BCE1356</span>
+                </div>
+              </div>
+              <div class="student-card">
+                <span class="student-num">02</span>
+                <div class="student-info">
+                  <strong class="student-name">NANDINI S</strong>
+                  <span class="student-reg">26BCE1424</span>
+                </div>
+              </div>
+              <div class="student-card">
+                <span class="student-num">03</span>
+                <div class="student-info">
+                  <strong class="student-name">S BHAVANA</strong>
+                  <span class="student-reg">26BCE1286</span>
+                </div>
+              </div>
+              <div class="student-card">
+                <span class="student-num">04</span>
+                <div class="student-info">
+                  <strong class="student-name">NARAVULA SUDEEPTAA</strong>
+                  <span class="student-reg">26BCE1336</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="academic-meta-row">
+            <div class="meta-item"><span class="meta-label">Course:</span> <span class="meta-val">Engineering Physics</span></div>
+            <div class="meta-item"><span class="meta-label">Subject Code:</span> <span class="meta-val">BAPHY 105</span></div>
+            <div class="meta-item"><span class="meta-label">Academic Year:</span> <span class="meta-val">2026 &ndash; 2030</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026&ndash;2030 Academic Physics Simulation. Designed strictly for educational and virtual laboratory demonstration.
+        </div>
+        <div class="footer-links">
+          <a href="#home">Back to Top &uarr;</a>
+          <a href="#theory">Theory</a>
+          <a href="#experiment">Virtual Lab</a>
+          <a href="#observations">Observations</a>
+          <a href="#graphs">Graphs</a>
+          <a href="#viva-quiz">Viva Questions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Physics Simulation, Graphs, Quiz, Challenges, App Controller -->
+  <script src="simulation.js"></script>
+  <script src="graphs.js"></script>
+  <script src="quiz.js"></script>
+  <script src="challenges.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
