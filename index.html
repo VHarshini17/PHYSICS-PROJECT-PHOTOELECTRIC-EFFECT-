@@ -23,48 +23,103 @@
   <!-- Navigation Bar -->
   <header class="navbar" id="main-nav">
     <div class="nav-container">
-      <a href="#home" class="nav-brand" aria-label="Photoelectric Virtual Lab Home">
-        <span class="brand-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3" fill="#00f0ff" />
-            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="#38bdf8" />
-          </svg>
-        </span>
-        <span class="brand-text">QUANTUM<span class="brand-accent">LAB</span></span>
-        <span class="brand-badge">B.Tech Physics</span>
-      </a>
+      <div class="nav-left">
+        <!-- 3-line Hamburger Menu Button positioned neatly at top-left -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="nav-links" id="nav-menu">
-        <a href="#home" class="nav-item active">Home</a>
-        <a href="#theory" class="nav-item">Theory</a>
-        <a href="#einstein" class="nav-item">Einstein's Law</a>
-        <a href="#experiment" class="nav-item nav-highlight">Virtual Lab</a>
-        <a href="#observations" class="nav-item">Observations</a>
-        <a href="#graphs" class="nav-item">Graphs</a>
-        <a href="#challenges" class="nav-item">Challenges</a>
-        <a href="#applications" class="nav-item">Applications</a>
-        <a href="#timeline" class="nav-item">Timeline</a>
-        <a href="#viva-quiz" class="nav-item">Viva Questions</a>
-        <a href="#conclusion" class="nav-item">Conclusion</a>
-      </nav>
+        <a href="#home" class="nav-brand" aria-label="Photoelectric Virtual Lab Home">
+          <span class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3" fill="#00f0ff" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="#38bdf8" />
+            </svg>
+          </span>
+          <span class="brand-text">QUANTUM<span class="brand-accent">LAB</span></span>
+          <span class="brand-badge">B.Tech Physics</span>
+        </a>
+      </div>
 
-      <!-- Action Button & Mobile Toggle -->
+      <!-- Nav Center: Current Page Indicator -->
+      <div class="nav-center">
+        <span class="current-view-badge" id="current-view-badge">Home</span>
+      </div>
+
+      <!-- Action Button -->
       <div class="nav-actions">
         <a href="#experiment" class="btn btn-primary nav-cta" id="nav-experiment-btn">
-          <span>Start Experiment</span>
+          <span>Virtual Lab</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
-        </button>
       </div>
     </div>
   </header>
 
+  <!-- Side Navigation Drawer & Backdrop Overlay -->
+  <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+  <aside class="nav-drawer" id="nav-drawer" aria-label="Primary Navigation Drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-text">QUANTUM<span class="brand-accent">LAB</span></span>
+        <span class="brand-badge">B.Tech Physics</span>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <div class="drawer-subtitle">Navigation Menu</div>
+    <nav class="drawer-nav" id="drawer-menu">
+      <a href="#home" class="drawer-item active" data-page="home">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#theory" class="drawer-item" data-page="theory">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Theory & Einstein's Law</span>
+      </a>
+      <a href="#experiment" class="drawer-item" data-page="experiment">
+        <svg viewBox="0 0 24 24"><path d="M10 2v7.31L4.62 18.25A2 2 0 0 0 6.32 21h11.36a2 2 0 0 0 1.7-2.75L14 9.31V2"/></svg>
+        <span>Virtual Lab (Simulation)</span>
+      </a>
+      <a href="#observations" class="drawer-item" data-page="observations">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+        <span>Observations Table</span>
+      </a>
+      <a href="#graphs" class="drawer-item" data-page="graphs">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Scientific Graphs</span>
+      </a>
+      <a href="#challenges" class="drawer-item" data-page="challenges">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        <span>Challenges</span>
+      </a>
+      <a href="#applications" class="drawer-item" data-page="applications">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/></svg>
+        <span>Applications</span>
+      </a>
+      <a href="#advanced" class="drawer-item" data-page="advanced">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Advanced Photoelectric Emission</span>
+      </a>
+      <a href="#diary" class="drawer-item" data-page="diary">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Project Diary / Log</span>
+      </a>
+      <a href="#conclusion" class="drawer-item" data-page="conclusion">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Conclusion & Findings</span>
+      </a>
+    </nav>
+    <div class="drawer-footer">
+      <span class="drawer-footer-inst">VIT CHENNAI &bull; SCOPE</span>
+      <span class="drawer-footer-team">Harshini, Nandini, Bhavana, Sudeeptaa</span>
+    </div>
+  </aside>
+
   <main>
     <!-- SECTION 1: HERO / HOME -->
-    <section id="home" class="hero-section">
+    <section id="home" class="hero-section page-view active-page">
       <div class="hero-content">
         <div class="hero-header">
           <div class="badge-pill">
@@ -86,8 +141,8 @@
             <a href="#theory" class="btn btn-secondary btn-large" id="hero-theory-btn">
               <span>Learn the Theory</span>
             </a>
-            <a href="#viva-quiz" class="btn btn-outline btn-large" id="hero-quiz-btn">
-              <span>Viva Voce Quiz</span>
+            <a href="#challenges" class="btn btn-outline btn-large" id="hero-challenges-btn">
+              <span>Laboratory Challenges</span>
             </a>
           </div>
         </div>
@@ -178,7 +233,7 @@
     </section>
 
     <!-- SECTION 2: THEORY SECTION -->
-    <section id="theory" class="section-container">
+    <section id="theory" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">FIRST-YEAR B.TECH CURRICULUM</span>
         <h2 class="section-title">Fundamental Theory of the Photoelectric Effect</h2>
@@ -308,17 +363,16 @@
           </table>
         </div>
       </div>
-    </section>
 
-    <!-- SECTION 3: EINSTEIN'S EXPLANATION -->
-    <section id="einstein" class="section-container">
-      <div class="section-header">
-        <span class="section-kicker">THEORETICAL FOUNDATION</span>
-        <h2 class="section-title">Einstein's Photon Theory & Derivations</h2>
-        <p class="section-subtitle">
-          How Albert Einstein in 1905 extended Planck's quantum hypothesis to explain the photoelectric effect, earning the 1921 Nobel Prize in Physics.
-        </p>
-      </div>
+      <!-- Integrated Subsection: Einstein's Photon Theory & Derivations -->
+      <div id="einstein" class="theory-einstein-subsection">
+        <div class="section-header" style="margin-top: 60px;">
+          <span class="section-kicker">THEORETICAL FOUNDATION</span>
+          <h2 class="section-title">Einstein's Photon Theory & Derivations</h2>
+          <p class="section-subtitle">
+            How Albert Einstein in 1905 extended Planck's quantum hypothesis to explain the photoelectric effect, earning the 1921 Nobel Prize in Physics.
+          </p>
+        </div>
 
       <div class="einstein-grid">
         <!-- Derivation Steps Column -->
@@ -445,10 +499,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- SECTION 4 & 5: VIRTUAL EXPERIMENT & SIMULATION (MAIN LABORATORY) -->
-    <section id="experiment" class="section-container lab-section">
+    <section id="experiment" class="section-container lab-section page-view">
       <div class="section-header">
         <span class="section-kicker">INTERACTIVE SCIENTIFIC APPARATUS</span>
         <h2 class="section-title">Virtual Photoelectric Laboratory</h2>
@@ -725,7 +780,7 @@
     </section>
 
     <!-- SECTION 7: EXPERIMENTAL OBSERVATIONS (APPEARS FIRST) -->
-    <section id="observations" class="section-container">
+    <section id="observations" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">LABORATORY RECORD BOOK</span>
         <h2 class="section-title">Experimental Observations & Tabulations</h2>
@@ -807,7 +862,7 @@
     </section>
 
     <!-- SECTION 6: GRAPHS & ANALYSIS (APPEARS IMMEDIATELY AFTER OBSERVATIONS) -->
-    <section id="graphs" class="section-container">
+    <section id="graphs" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">MATHEMATICAL VERIFICATION</span>
         <h2 class="section-title">Experimental Graphs & Data Analysis</h2>
@@ -895,7 +950,7 @@
     </section>
 
     <!-- SECTION 14: INTERACTIVE CHALLENGE / EXPERIMENT MODE -->
-    <section id="challenges" class="section-container">
+    <section id="challenges" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">INTERACTIVE PRACTICAL EXAMINATION</span>
         <h2 class="section-title">Laboratory Challenges & Problem Solving</h2>
@@ -977,251 +1032,986 @@
       </div>
     </section>
 
-    <!-- SECTION 15: REAL-WORLD APPLICATIONS -->
-    <section id="applications" class="section-container">
+    <!-- SECTION 15: REAL-WORLD APPLICATIONS (MAIN 4-CARD VIEW) -->
+    <section id="applications" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">ENGINEERING & MODERN TECHNOLOGY</span>
         <h2 class="section-title">Real-World Applications of the Photoelectric Effect</h2>
         <p class="section-subtitle">
-          From everyday automatic supermarket doors to deep-space gamma detectors, explore modern engineering systems powered by photoemission.
+          Explore four foundational engineering technologies directly powered by the photoelectric effect. Select any application below to explore its working principle, schematic diagram, and interactive demonstrator.
         </p>
       </div>
 
-      <div class="applications-grid">
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-cyan">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M8 8l8 8M16 8l-8 8"/></svg>
+      <!-- Exactly Four Compact, Clickable Application Cards -->
+      <div class="apps-four-grid">
+        <!-- Card 1: Automatic Doors & Safety Barriers -->
+        <div class="app-card-clickable glass-panel" onclick="navigateToPage('app-automatic-doors')" role="button" tabindex="0" aria-label="Open Automatic Doors and Safety Barriers Application Page">
+          <div class="app-card-header">
+            <div class="app-card-icon icon-amber">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+            </div>
+            <span class="badge-tag">Safety Automation</span>
           </div>
-          <h3>Photocells & Optical Sensors</h3>
-          <p>
-            Phototubes convert incident optical signals directly into measurable electrical current. Used in precision spectrophotometry, lux meters, and automated street-light switching.
+          <h3 class="app-card-title">Automatic Doors and Safety Barriers</h3>
+          <p class="app-card-summary">
+            Continuous optical beam maintains photocurrent holding electromagnetic safety relays. Beam interruption halts current within milliseconds, triggering fail-safe door actuators or machinery emergency stops.
           </p>
-          <span class="app-tag">Optoelectronics</span>
+          <div class="app-card-footer">
+            <span class="app-open-link">Open Full Detail Page &rarr;</span>
+            <span class="card-tag">Industrial Tech</span>
+          </div>
         </div>
 
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-amber">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        <!-- Card 2: Vision, Night Vision Devices, and Image Intensifiers -->
+        <div class="app-card-clickable glass-panel" onclick="navigateToPage('app-night-vision')" role="button" tabindex="0" aria-label="Open Vision, Night Vision Devices, and Image Intensifiers Application Page">
+          <div class="app-card-header">
+            <div class="app-card-icon icon-rose">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <span class="badge-tag">Optoelectronics</span>
           </div>
-          <h3>Automatic Doors & Safety Barriers</h3>
-          <p>
-            An uninterrupted light beam falls continuously on a photocell. When an obstacle or person interrupts the beam, photocurrent halts, triggering electromagnetic relays to open doors or halt dangerous factory machinery.
+          <h3 class="app-card-title">Vision, Night Vision Devices, and Image Intensifiers</h3>
+          <p class="app-card-summary">
+            Photocathodes convert invisible nocturnal photons into primary electrons. Microchannel plates (MCP) cascade-amplify the flux by 50,000&times;, bombarding phosphor screens to reconstruct sharp nocturnal scenes.
           </p>
-          <span class="app-tag">Industrial Automation</span>
+          <div class="app-card-footer">
+            <span class="app-open-link">Open Full Detail Page &rarr;</span>
+            <span class="card-tag">Electro-Optics</span>
+          </div>
         </div>
 
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-emerald">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>
+        <!-- Card 3: Photo Cells and Optical Sensors -->
+        <div class="app-card-clickable glass-panel" onclick="navigateToPage('app-photocells')" role="button" tabindex="0" aria-label="Open Photo Cells and Optical Sensors Application Page">
+          <div class="app-card-header">
+            <div class="app-card-icon icon-cyan">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M8 8l8 8M16 8l-8 8"/></svg>
+            </div>
+            <span class="badge-tag">Precision Sensing</span>
           </div>
-          <h3>Camera Light Meters & Exposure Control</h3>
-          <p>
-            Modern cameras utilize solid-state photodiodes and photocells to sample scene luminance, automatically computing optimal shutter speeds and aperture f-numbers for balanced exposure.
+          <h3 class="app-card-title">Photo Cells and Optical Sensors</h3>
+          <p class="app-card-summary">
+            Photo-emissive vacuum cells convert incident optical flux into proportional microampere signals. Used for precision photometric calibration, optical audio reading, and automated lighting systems.
           </p>
-          <span class="app-tag">Digital Imaging</span>
+          <div class="app-card-footer">
+            <span class="app-open-link">Open Full Detail Page &rarr;</span>
+            <span class="card-tag">Instrumentation</span>
+          </div>
         </div>
 
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-purple">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <!-- Card 4: Photomultiplier Tubes -->
+        <div class="app-card-clickable glass-panel" onclick="navigateToPage('app-pmt')" role="button" tabindex="0" aria-label="Open Photomultiplier Tubes Application Page">
+          <div class="app-card-header">
+            <div class="app-card-icon icon-purple">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <span class="badge-tag">Quantum Physics</span>
           </div>
-          <h3>Photomultiplier Tubes (PMTs)</h3>
-          <p>
-            An incident single photon ejects a primary photoelectron, which strikes a succession of dynodes, causing exponential secondary electron emission. Delivers gains up to 10⁶ &ndash; 10⁸ in nuclear medicine (PET scans) and particle astrophysics.
+          <h3 class="app-card-title">Photomultiplier Tubes (PMTs)</h3>
+          <p class="app-card-summary">
+            A single photon strikes a photocathode, ejecting a primary photoelectron. A succession of dynodes generates secondary electron multiplication, achieving exponential gains up to 10⁶ &ndash; 10⁸ with sub-nanosecond response.
           </p>
-          <span class="app-tag">Nuclear Physics & Medical Imaging</span>
-        </div>
-
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-rose">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <h3>Night Vision Devices & Image Intensifiers</h3>
-          <p>
-            Photocathodes convert invisible infrared photons into electron beams. Microchannel plates amplify the electron flux, which then bombards a phosphor screen to render bright green visible nocturnal images.
-          </p>
-          <span class="app-tag">Defense & Aerospace</span>
-        </div>
-
-        <div class="app-card glass-panel">
-          <div class="app-icon-wrap icon-blue">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          </div>
-          <h3>Photovoltaics & Solar Power</h3>
-          <p>
-            While related to the internal photovoltaic effect in p-n junctions, solar cells operate on the identical quantum principle of electron excitation across energy bandgaps by incident sunlight quanta.
-          </p>
-          <span class="app-tag">Renewable Energy</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 16: HISTORICAL TIMELINE -->
-    <section id="timeline" class="section-container">
-      <div class="section-header">
-        <span class="section-kicker">CHRONOLOGY OF DISCOVERY</span>
-        <h2 class="section-title">Historical Evolution of Quantum Light Theory</h2>
-        <p class="section-subtitle">
-          How experimental anomalies shattered classical electromagnetism and gave birth to modern quantum physics.
-        </p>
-      </div>
-
-      <div class="timeline-container glass-panel">
-        <div class="timeline-line"></div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-cyan">1887</span>
-            <h4>Heinrich Hertz Discovers the Phenomenon</h4>
-            <p>
-              While generating radio waves using spark-gap transmitters, Hertz noticed that electric sparks passed much more readily between electrodes when illuminated by ultraviolet light from an electric arc.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-amber">1899</span>
-            <h4>J.J. Thomson Identifies Emitted Particles as Electrons</h4>
-            <p>
-              Following his 1897 discovery of the electron, J.J. Thomson measured the charge-to-mass ratio (e/m) of particles liberated by ultraviolet light on metal plates, proving they were identical to cathode ray electrons.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-emerald">1900</span>
-            <h4>Max Planck Proposes Quantized Energy (E = nh&nu;)</h4>
-            <p>
-              To solve the ultraviolet catastrophe in blackbody radiation, Planck proposed that atomic oscillators emit and absorb energy only in discrete integer multiples of <code>h&nu;</code>, introducing Planck's constant <code>h</code>.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-purple">1905</span>
-            <h4>Albert Einstein Formulates Photon Theory</h4>
-            <p>
-              In his Annus Mirabilis paper, Einstein daringly posited that light itself is quantized into packets (photons). He published <code>K<sub>max</sub> = hf &minus; &Phi;</code>, solving all experimental paradoxes of the photoelectric effect.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-rose">1916</span>
-            <h4>Robert Millikan's Definitive Experiments</h4>
-            <p>
-              Initially attempting to disprove Einstein's photon hypothesis, Millikan constructed a high-vacuum "machine shop in vacuo" to clean alkali metals and measured stopping potentials with unprecedented precision, definitively confirming Einstein's linear law and measuring <code>h</code>.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <span class="timeline-year text-cyan">1921</span>
-            <h4>Einstein Awarded the Nobel Prize in Physics</h4>
-            <p>
-              Albert Einstein was awarded the 1921 Nobel Prize in Physics specifically <em>"for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect."</em>
-            </p>
+          <div class="app-card-footer">
+            <span class="app-open-link">Open Full Detail Page &rarr;</span>
+            <span class="card-tag">Nuclear Physics</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 17: VIVA QUESTIONS -->
-    <section id="viva-quiz" class="section-container">
-      <div class="section-header">
-        <span class="section-kicker">EXAMINATION ASSESSMENT</span>
-        <h2 class="section-title">Viva Questions</h2>
+    <!-- DETAIL PAGE 1: AUTOMATIC DOORS AND SAFETY BARRIERS -->
+    <section id="app-automatic-doors" class="section-container page-view app-detail-page">
+      <div class="app-detail-top">
+        <button class="btn btn-secondary back-to-apps-btn" onclick="navigateToPage('applications')">
+          <span>&larr; Back to All Applications</span>
+        </button>
+        <span class="badge-tag">Application 1 of 4 &bull; Industrial Safety</span>
+      </div>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 28px;">
+        <span class="section-kicker">OPTOELECTRONIC SENSING MECHANISM</span>
+        <h2 class="section-title">Automatic Doors and Safety Barriers</h2>
         <p class="section-subtitle">
-          Test your conceptual understanding with 10 carefully designed university viva questions. Receive immediate grading, detailed scientific rationale, and performance scoring.
+          How light beam interruption and photoelectric current cessation safeguard pedestrians and automate industrial equipment.
         </p>
       </div>
 
-      <div class="quiz-wrapper glass-panel">
-        <div class="quiz-top-bar">
-          <div class="quiz-progress-info">
-            <span class="card-tag">EXAMINATION IN PROGRESS</span>
-            <span class="quiz-counter" id="quiz-question-counter">Question 1 of 10</span>
+      <div class="app-detail-layout">
+        <!-- Overview & Working Principle Grid -->
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 26px;">
+            <span class="card-tag">A. APPLICATION OVERVIEW</span>
+            <h3 style="margin: 12px 0 10px;">Purpose & Industrial Importance</h3>
+            <p>
+              Photoelectric safety barriers and automatic door operators are contactless optoelectronic safety interlocks. They prevent accidents by instantly detecting objects crossing hazardous boundaries in transit terminals, elevator portals, stamping presses, and automated doorways.
+            </p>
+            <p style="margin-top: 12px;">
+              Unlike passive infrared (PIR) motion detectors that detect thermal body heat, photoelectric barriers rely on an active, focused optical or infrared beam falling continuously onto a photodetector.
+            </p>
+
+            <div class="scientific-note" style="margin-top: 16px;">
+              <strong>Fail-Safe Physics Logic:</strong> The system is designed with normally energized relays. Any loss of photocurrent—whether by a person blocking the beam or system power failure—immediately triggers the safe state (opening doors or cutting machine power).
+            </div>
           </div>
-          <div class="quiz-score-pill">
-            <span>Score: <strong id="live-quiz-score">0</strong> / 10</span>
+
+          <!-- Schematic Diagram Card -->
+          <div class="app-schematic-card glass-panel">
+            <span class="card-tag">D. TECHNICAL SCHEMATIC</span>
+            <svg viewBox="0 0 460 220" width="100%" height="200" aria-label="Schematic diagram of photoelectric safety barrier">
+              <!-- Emitter -->
+              <rect x="20" y="70" width="50" height="80" rx="6" fill="#0f172a" stroke="#00f0ff" stroke-width="2"/>
+              <text x="45" y="105" fill="#38bdf8" font-size="10" font-family="sans-serif" text-anchor="middle" font-weight="bold">TRANSMITTER</text>
+              <text x="45" y="125" fill="#94a3b8" font-size="9" font-family="sans-serif" text-anchor="middle">IR Diode</text>
+
+              <!-- Beam Line -->
+              <line x1="70" y1="110" x2="370" y2="110" stroke="#00f0ff" stroke-width="4" stroke-dasharray="8 4" opacity="0.85"/>
+              <text x="215" y="95" fill="#00f0ff" font-size="10" font-family="monospace" text-anchor="middle">Photons (hf &gt; &Phi;)</text>
+
+              <!-- Receiver -->
+              <rect x="370" y="70" width="70" height="80" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="405" y="105" fill="#10b981" font-size="10" font-family="sans-serif" text-anchor="middle" font-weight="bold">RECEIVER</text>
+              <text x="405" y="125" fill="#94a3b8" font-size="9" font-family="sans-serif" text-anchor="middle">Photocell</text>
+
+              <!-- Obstacle (Person) -->
+              <circle cx="215" cy="110" r="14" fill="rgba(244,63,94,0.3)" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3 3"/>
+              <text x="215" y="145" fill="#f43f5e" font-size="9" font-family="sans-serif" text-anchor="middle">Crossing Zone</text>
+            </svg>
+            <span class="schematic-caption">Fig 1.1: Active optical beam path with photoelectric receiver and relay interlock</span>
           </div>
         </div>
 
-        <!-- Quiz Container (Active Questions or Results) -->
-        <div id="quiz-body-container">
-          <div class="quiz-question-card" id="quiz-question-card">
-            <h3 class="quiz-question-text" id="quiz-question-title">
-              1. What physical quantity strictly determines whether photoelectric emission occurs from a given metal?
-            </h3>
-
-            <div class="quiz-options-list" id="quiz-options-list">
-              <!-- Options rendered dynamically by quiz.js -->
-            </div>
-
-            <div class="quiz-feedback-box hidden" id="quiz-feedback-box">
-              <div class="feedback-status" id="quiz-feedback-status"></div>
-              <div class="feedback-explanation" id="quiz-feedback-text"></div>
-            </div>
-
-            <div class="quiz-card-footer">
-              <button class="btn btn-outline" id="btn-quiz-prev" disabled>
-                <span>&larr; Previous</span>
-              </button>
-              <button class="btn btn-primary" id="btn-quiz-next">
-                <span>Submit & Next &rarr;</span>
-              </button>
-            </div>
-          </div>
+        <!-- Working Principle In-Depth -->
+        <div class="glass-panel" style="padding: 28px;">
+          <span class="card-tag">B. PHYSICAL WORKING PRINCIPLE</span>
+          <h3 style="margin: 12px 0 10px;">Step-by-Step Quantum Operation</h3>
+          <ol class="scientific-list" style="margin-top: 10px;">
+            <li><strong>Collimated Photon Flux:</strong> A solid-state infrared or visible laser diode emits photons with energy <code>E = hf</code> focused across the doorway toward the photosensitive surface.</li>
+            <li><strong>Continuous Photoelectric Liberation:</strong> At the receiver, the photosensitive cathode (coated with low work function metal &Phi;) absorbs photons where <code>hf &gt; &Phi;</code>. Photoelectrons are liberated instantaneously (&lt; 10⁻⁹ s) according to Einstein's law <code>K<sub>max</sub> = hf &minus; &Phi;</code>.</li>
+            <li><strong>Relay Energization:</strong> The steady photocurrent (typically 20 &ndash; 80 &mu;A) is amplified to energize an electromagnetic relay armature, holding the door mechanism closed/idle.</li>
+            <li><strong>Beam Interruption:</strong> When an obstacle crosses the threshold, the photon flux is blocked. Photocurrent drops to exactly 0 &mu;A within nanoseconds.</li>
+            <li><strong>Safety Actuation:</strong> The de-energized relay spring drops out, triggering door drive servomotors to open the door leaf or safely halting machinery.</li>
+          </ol>
         </div>
 
-        <!-- Quiz Completion Screen (Hidden by default) -->
-        <div class="quiz-results-card hidden" id="quiz-results-card">
-          <div class="results-header">
-            <div class="results-trophy" id="results-badge">&#127891;</div>
-            <h3 id="results-verdict">Outstanding Examination Performance!</h3>
-            <p id="results-summary-text">You scored 10 out of 10 (100%).</p>
-          </div>
-
-          <div class="results-stats-row">
-            <div class="stat-badge">
-              <span class="stat-num text-emerald" id="res-correct-count">10</span>
-              <span class="stat-name">Correct</span>
+        <!-- Interactive Simulation Demonstrator -->
+        <div class="app-demo-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="card-tag">E. INTERACTIVE SIMULATION</span>
+              <h3 style="margin-top: 4px;">Beam Interruption & Relay Interlock Demonstrator</h3>
             </div>
-            <div class="stat-badge">
-              <span class="stat-num text-rose" id="res-incorrect-count">0</span>
-              <span class="stat-name">Incorrect</span>
-            </div>
-            <div class="stat-badge">
-              <span class="stat-num text-cyan" id="res-percentage">100%</span>
-              <span class="stat-name">Accuracy</span>
-            </div>
-          </div>
-
-          <div class="results-actions">
-            <button class="btn btn-primary" id="btn-retake-quiz">
-              <span>&#8634; Retake Viva Quiz</span>
+            <button class="btn btn-primary" id="btn-toggle-door-beam">
+              <span id="door-toggle-text">Cross / Block Optical Beam</span>
             </button>
-            <a href="#experiment" class="btn btn-secondary">
-              <span>Return to Virtual Lab</span>
-            </a>
+          </div>
+
+          <!-- Animated Beam Display -->
+          <div class="door-beam-visualizer">
+            <div class="door-emitter">
+              <span>EMITTER</span>
+              <strong style="color:#00f0ff; margin-top:4px;">LED</strong>
+            </div>
+            <div class="optical-beam-line" id="door-beam-line"></div>
+            <div class="beam-obstacle-marker" id="door-obstacle-marker">&#129485;</div>
+            <div class="door-receiver">
+              <span>RECEIVER</span>
+              <strong style="color:#10b981; margin-top:4px;">CELL</strong>
+            </div>
+          </div>
+
+          <div class="demo-readout-row">
+            <div class="demo-readout-box">
+              <span class="demo-label">Optical Beam Path</span>
+              <span class="demo-val text-cyan" id="door-status-beam">UNINTERRUPTED</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Photocurrent (I)</span>
+              <span class="demo-val text-emerald" id="door-status-current">45.0 &mu;A</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Door Actuator State</span>
+              <span class="demo-val text-amber" id="door-status-relay">DOOR IDLE (CLOSED)</span>
+            </div>
           </div>
         </div>
+
+        <!-- Application Areas & Engineering Specifications -->
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">C. PRACTICAL FIELDS</span>
+            <h4 style="margin: 10px 0;">Real-World Implementations</h4>
+            <ul class="scientific-list">
+              <li><strong>Commercial Transit:</strong> Rapid airport sliding doors, subway turnstiles, elevator edge curtains.</li>
+              <li><strong>Industrial Automation:</strong> Heavy metal stamping presses, CNC mills, robotic cell perimeter light curtains.</li>
+              <li><strong>Logistics:</strong> Automated pallet conveyor parcel counting and package height profiling.</li>
+            </ul>
+          </div>
+
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">F. SPECIFICATIONS</span>
+            <h4 style="margin: 10px 0;">Advantages & Physical Limits</h4>
+            <ul class="scientific-list">
+              <li><strong>Advantages:</strong> Instantaneous quantum response (&lt; 1 ms), zero mechanical wear, immune to mechanical jams.</li>
+              <li><strong>Limitations:</strong> Optical misalignment, atmospheric scattering (heavy dust, dense steam), ambient sunlight saturation (solved via pulsed carrier modulation).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL PAGE 2: VISION, NIGHT VISION DEVICES, AND IMAGE INTENSIFIERS -->
+    <section id="app-night-vision" class="section-container page-view app-detail-page">
+      <div class="app-detail-top">
+        <button class="btn btn-secondary back-to-apps-btn" onclick="navigateToPage('applications')">
+          <span>&larr; Back to All Applications</span>
+        </button>
+        <span class="badge-tag">Application 2 of 4 &bull; Electro-Optics</span>
+      </div>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 28px;">
+        <span class="section-kicker">PHOTOELECTRON AMPLIFICATION</span>
+        <h2 class="section-title">Vision, Night Vision Devices, and Image Intensifiers</h2>
+        <p class="section-subtitle">
+          How low-light photons eject photoelectrons that are amplified 50,000&times; via Microchannel Plates to render visible nocturnal images.
+        </p>
+      </div>
+
+      <div class="app-detail-layout">
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 26px;">
+            <span class="card-tag">A. APPLICATION OVERVIEW</span>
+            <h3 style="margin: 12px 0 10px;">Definition & Importance</h3>
+            <p>
+              Image Intensifier Tubes (Generation 2 & 3 night-vision devices) amplify ambient nocturnal photons (starlight, airglow, near-infrared moonlight) that are invisible to the unaided human eye.
+            </p>
+            <p style="margin-top: 12px;">
+              <strong>Scientific Distinction:</strong> Night vision devices operate via the <em>external photoelectric effect</em> and electron multiplication, in contrast to thermal imaging which measures blackbody long-wave infrared heat (8 &ndash; 14 &mu;m).
+            </p>
+          </div>
+
+          <div class="app-schematic-card glass-panel">
+            <span class="card-tag">D. TECHNICAL SCHEMATIC</span>
+            <svg viewBox="0 0 460 220" width="100%" height="200" aria-label="Schematic of Image Intensifier Tube">
+              <!-- Objective Lens -->
+              <ellipse cx="40" cy="110" rx="12" ry="60" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="40" y="190" fill="#38bdf8" font-size="9" font-family="sans-serif" text-anchor="middle">Lens</text>
+
+              <!-- Photocathode -->
+              <rect x="90" y="55" width="14" height="110" rx="2" fill="#00f0ff" opacity="0.8"/>
+              <text x="97" y="190" fill="#00f0ff" font-size="9" font-family="sans-serif" text-anchor="middle">Photocathode</text>
+
+              <!-- MCP -->
+              <rect x="180" y="50" width="30" height="120" rx="4" fill="#a855f7" opacity="0.85"/>
+              <text x="195" y="190" fill="#a855f7" font-size="9" font-family="sans-serif" text-anchor="middle">MCP (Capillaries)</text>
+
+              <!-- Phosphor Screen -->
+              <rect x="330" y="55" width="16" height="110" rx="2" fill="#10b981" opacity="0.9"/>
+              <text x="338" y="190" fill="#10b981" font-size="9" font-family="sans-serif" text-anchor="middle">Phosphor Screen</text>
+
+              <!-- Photon & Electron Rays -->
+              <line x1="55" y1="110" x2="88" y2="110" stroke="#f1f5f9" stroke-width="2" stroke-dasharray="3 3"/>
+              <line x1="106" y1="110" x2="178" y2="110" stroke="#00f0ff" stroke-width="2"/>
+              <line x1="212" y1="110" x2="328" y2="110" stroke="#a855f7" stroke-width="5"/>
+            </svg>
+            <span class="schematic-caption">Fig 2.1: Image Intensifier Tube Architecture (Photocathode &rarr; MCP &rarr; Phosphor Anode)</span>
+          </div>
+        </div>
+
+        <div class="glass-panel" style="padding: 28px;">
+          <span class="card-tag">B. PHYSICAL WORKING PRINCIPLE</span>
+          <h3 style="margin: 12px 0 10px;">Quantum Stages of Intensification</h3>
+          <ol class="scientific-list" style="margin-top: 10px;">
+            <li><strong>Optical Focusing:</strong> Faint nocturnal photons (starlight flux) are focused by the objective lens onto a Gallium Arsenide (GaAs) or multi-alkali S-20 transmission photocathode.</li>
+            <li><strong>Photoelectron Ejection:</strong> Incident photons with <code>hf &gt; &Phi;</code> liberate photoelectrons via the external photoelectric effect. The quantum efficiency &eta; typically reaches 30 &ndash; 50%.</li>
+            <li><strong>Microchannel Plate (MCP) Amplification:</strong> Liberated electrons are accelerated by ~800 V into a disc perforated with millions of microscopic glass capillaries (microchannels) tilted at 8&deg;. Each electron repeatedly collides with capillary walls, releasing cascades of secondary electrons yielding gains of <code>10³ &ndash; 10⁵</code>.</li>
+            <li><strong>Phosphor Screen Conversion:</strong> The dense electron cloud is accelerated by ~6,000 V into a P43 phosphor screen. Kinetic energy excites phosphor atoms, which emit green photons (peak wavelength <code>&lambda; = 545 nm</code>, precisely matching human photopic eye sensitivity).</li>
+          </ol>
+        </div>
+
+        <!-- Interactive Night Vision Gain Simulator -->
+        <div class="app-demo-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="card-tag">E. INTERACTIVE SIMULATION</span>
+              <h3 style="margin-top: 4px;">Microchannel Plate Electron Multiplication Simulator</h3>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
+            <div>
+              <label for="nv-light-slider" style="font-size: 0.88rem; color: var(--text-muted); display: block; margin-bottom: 6px;">
+                Ambient Nocturnal Light Level: <strong id="nv-lux-val" class="text-cyan">Starlight (0.001 Lux)</strong>
+              </label>
+              <input type="range" id="nv-light-slider" min="1" max="5" value="2" step="1" style="width: 100%;">
+
+              <label for="nv-gain-slider" style="font-size: 0.88rem; color: var(--text-muted); display: block; margin: 16px 0 6px;">
+                MCP Acceleration Voltage (Gain): <strong id="nv-gain-val" class="text-purple">10,000&times;</strong>
+              </label>
+              <input type="range" id="nv-gain-slider" min="1000" max="50000" value="10000" step="1000" style="width: 100%;">
+            </div>
+
+            <!-- Simulated Output Screen -->
+            <div style="background: #020817; border: 2px solid #10b981; border-radius: var(--radius-md); padding: 20px; text-align: center; box-shadow: 0 0 25px rgba(16,185,129,0.2);">
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #10b981; letter-spacing: 0.1em;">INTENSIFIED OUTPUT DISPLAY (545 nm)</span>
+              <div id="nv-screen-preview" style="height: 90px; margin-top: 10px; border-radius: 6px; background: rgba(16,185,129,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #10b981; font-weight: 700; text-shadow: 0 0 10px #10b981;">
+                VISIBILITY: 84% &bull; CLEAR
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-readout-row">
+            <div class="demo-readout-box">
+              <span class="demo-label">Primary Photoelectrons</span>
+              <span class="demo-val text-cyan" id="nv-stat-primary">1,200 e⁻/sec</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">MCP Secondary Multiplication</span>
+              <span class="demo-val text-purple" id="nv-stat-amplified">1.2 &times; 10⁷ e⁻/sec</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Green Light Output</span>
+              <span class="demo-val text-emerald" id="nv-stat-lumens">48.0 cd/m²</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">C. PRACTICAL FIELDS</span>
+            <h4 style="margin: 10px 0;">Applications</h4>
+            <ul class="scientific-list">
+              <li><strong>Defense & Aviation:</strong> Pilot night vision goggles (AN/AVS-9), perimeter surveillance.</li>
+              <li><strong>Emergency Operations:</strong> Nocturnal search and rescue in dense wilderness or maritime disaster.</li>
+              <li><strong>Ecology:</strong> Non-intrusive nighttime wildlife behavioural monitoring.</li>
+            </ul>
+          </div>
+
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">F. EQUATIONS & LIMITS</span>
+            <h4 style="margin: 10px 0;">Mathematical Formulation</h4>
+            <div class="formula-box" style="margin-bottom: 10px;">
+              <div class="math-eq">
+                Total Gain = <span class="math-var">&eta;</span> &times; <span class="math-var">G</span><sub class="math-sub">MCP</sub> &times; <span class="math-var">G</span><sub class="math-sub">phosphor</sub>
+              </div>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Limitation:</strong> Susceptible to blooming (overexposure) if suddenly irradiated by intense bright light; protected by Auto-Gating circuitry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL PAGE 3: PHOTO CELLS AND OPTICAL SENSORS -->
+    <section id="app-photocells" class="section-container page-view app-detail-page">
+      <div class="app-detail-top">
+        <button class="btn btn-secondary back-to-apps-btn" onclick="navigateToPage('applications')">
+          <span>&larr; Back to All Applications</span>
+        </button>
+        <span class="badge-tag">Application 3 of 4 &bull; Sensors & Instrumentation</span>
+      </div>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 28px;">
+        <span class="section-kicker">LINEAR LIGHT-TO-CURRENT CONVERSION</span>
+        <h2 class="section-title">Photo Cells and Optical Sensors</h2>
+        <p class="section-subtitle">
+          Direct conversion of radiant optical energy into measurable electric current via photo-emissive tubes and semiconductor photodiodes.
+        </p>
+      </div>
+
+      <div class="app-detail-layout">
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 26px;">
+            <span class="card-tag">A. APPLICATION OVERVIEW</span>
+            <h3 style="margin: 12px 0 10px;">Definition & Physical Distinction</h3>
+            <p>
+              A <strong>photocell (phototube)</strong> is an evacuated or gas-filled electron tube designed to generate an electric current in direct proportion to the intensity of light incident upon its photosensitive cathode.
+            </p>
+            <div class="scientific-note" style="margin-top: 14px;">
+              <strong>Three Physical Photodetection Classes:</strong>
+              <ul style="margin-top: 6px; padding-left: 18px;">
+                <li><strong>Photo-emissive Cells (External effect):</strong> Electrons escape into vacuum; highly linear, fast.</li>
+                <li><strong>Photovoltaic Cells (Internal effect):</strong> Generates EMF across semiconductor p-n junctions (solar cells).</li>
+                <li><strong>Photoconductive Cells (LDRs):</strong> Incident light decreases bulk material resistance.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="app-schematic-card glass-panel">
+            <span class="card-tag">D. TECHNICAL SCHEMATIC</span>
+            <svg viewBox="0 0 460 220" width="100%" height="200" aria-label="Schematic of Vacuum Phototube">
+              <!-- Glass Envelope -->
+              <ellipse cx="230" cy="110" rx="90" ry="80" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 3"/>
+              <text x="230" y="205" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Evacuated Glass Bulb</text>
+
+              <!-- Curved Cathode -->
+              <path d="M 180 50 A 60 60 0 0 0 180 170" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+              <text x="145" y="115" fill="#f59e0b" font-size="9" font-family="sans-serif" font-weight="bold">Cathode (&Phi;)</text>
+
+              <!-- Central Anode Wire -->
+              <line x1="250" y1="60" x2="250" y2="160" stroke="#00f0ff" stroke-width="3"/>
+              <text x="280" y="115" fill="#00f0ff" font-size="9" font-family="sans-serif" font-weight="bold">Anode (+)</text>
+
+              <!-- Incident Rays -->
+              <line x1="90" y1="80" x2="165" y2="95" stroke="#f1f5f9" stroke-width="2"/>
+              <line x1="90" y1="140" x2="165" y2="125" stroke="#f1f5f9" stroke-width="2"/>
+              <text x="100" y="70" fill="#f1f5f9" font-size="8" font-family="monospace">Light (hf)</text>
+            </svg>
+            <span class="schematic-caption">Fig 3.1: Vacuum Phototube Construction with Semi-Cylindrical Photocathode</span>
+          </div>
+        </div>
+
+        <div class="glass-panel" style="padding: 28px;">
+          <span class="card-tag">B. PHYSICAL WORKING PRINCIPLE</span>
+          <h3 style="margin: 12px 0 10px;">Operation in Circuit Configuration</h3>
+          <ol class="scientific-list" style="margin-top: 10px;">
+            <li><strong>Photosensitive Coating:</strong> The semi-cylindrical concave cathode is coated with a composite alkali layer (such as Cesium-Antimony Cs₃Sb or Cesium Oxide Cs₂O-Ag) offering very low work function (&Phi; &asymp; 1.4 &ndash; 2.0 eV), enabling response to the entire visible spectrum.</li>
+            <li><strong>Electron Emission:</strong> Light of frequency <code>f &gt; f₀</code> ejects electrons into the evacuated bulb.</li>
+            <li><strong>Anode Collection:</strong> An external battery maintains the central wire anode at positive potential (+50 to +150 V), sweeping photoelectrons forward to prevent space-charge buildup.</li>
+            <li><strong>Linear Law:</strong> Under saturation potential, the photocurrent <code>I</code> is strictly linear with incident light luminous flux <code>L</code>: <code>I = k &times; L</code> over several orders of magnitude.</li>
+          </ol>
+        </div>
+
+        <!-- Interactive Photocell Lux Simulator -->
+        <div class="app-demo-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="card-tag">E. INTERACTIVE SIMULATION</span>
+              <h3 style="margin-top: 4px;">Light Intensity vs. Saturation Photocurrent Simulator</h3>
+            </div>
+          </div>
+
+          <div style="margin: 10px 0;">
+            <label for="cell-lux-slider" style="font-size: 0.88rem; color: var(--text-muted); display: block; margin-bottom: 6px;">
+              Incident Illumination (Lux): <strong id="cell-lux-val" class="text-cyan">500 Lux</strong>
+            </label>
+            <input type="range" id="cell-lux-slider" min="0" max="1000" value="500" step="25" style="width: 100%;">
+          </div>
+
+          <div class="demo-readout-row">
+            <div class="demo-readout-box">
+              <span class="demo-label">Incident Photon Flux</span>
+              <span class="demo-val text-cyan" id="cell-stat-photons">3.2 &times; 10¹⁴ /s</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Liberated Photocurrent</span>
+              <span class="demo-val text-emerald" id="cell-stat-current">36.0 &mu;A</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Linearity Status</span>
+              <span class="demo-val text-purple">R² = 0.9998 (Linear)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">C. PRACTICAL FIELDS</span>
+            <h4 style="margin: 10px 0;">Industrial Implementations</h4>
+            <ul class="scientific-list">
+              <li><strong>Optical Audio Reproduction:</strong> Reads optical variable-area soundtracks printed along traditional 35mm motion picture celluloid film strips.</li>
+              <li><strong>Spectrophotometry:</strong> Measures chemical sample absorption spectra in laboratory analytical chemistry.</li>
+              <li><strong>Streetlight Controllers:</strong> Automatically switches city illumination at dusk and dawn.</li>
+            </ul>
+          </div>
+
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">F. LIMITS & ATTRIBUTES</span>
+            <h4 style="margin: 10px 0;">Vacuum vs. Gas-Filled Cells</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Vacuum Phototubes:</strong> Strictly linear, instant response, low current (&sim; 20 &mu;A).<br>
+              <strong>Gas-Filled Phototubes:</strong> Small amount of argon gas introduces Townsend ionization multiplication (&sim; 5&times; current boost), with slight loss in high-frequency linearity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL PAGE 4: PHOTOMULTIPLIER TUBES -->
+    <section id="app-pmt" class="section-container page-view app-detail-page">
+      <div class="app-detail-top">
+        <button class="btn btn-secondary back-to-apps-btn" onclick="navigateToPage('applications')">
+          <span>&larr; Back to All Applications</span>
+        </button>
+        <span class="badge-tag">Application 4 of 4 &bull; Nuclear Physics</span>
+      </div>
+
+      <div class="section-header" style="text-align: left; margin-bottom: 28px;">
+        <span class="section-kicker">ULTRA-SENSITIVE SINGLE-PHOTON DETECTION</span>
+        <h2 class="section-title">Photomultiplier Tubes (PMTs)</h2>
+        <p class="section-subtitle">
+          Exponential secondary electron emission through cascaded dynodes delivering amplification gains exceeding 10⁶ to 10⁸.
+        </p>
+      </div>
+
+      <div class="app-detail-layout">
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 26px;">
+            <span class="card-tag">A. APPLICATION OVERVIEW</span>
+            <h3 style="margin: 12px 0 10px;">Purpose & Unmatched Sensitivity</h3>
+            <p>
+              A <strong>Photomultiplier Tube (PMT)</strong> is an exceptionally sensitive vacuum detector capable of registering single photons of ultraviolet, visible, and near-infrared radiation.
+            </p>
+            <p style="margin-top: 12px;">
+              It couples the external photoelectric effect with cascaded secondary electron emission, multiplying a single photoelectron into millions of electrons with negligible thermal noise and sub-nanosecond rise times.
+            </p>
+          </div>
+
+          <div class="app-schematic-card glass-panel">
+            <span class="card-tag">D. TECHNICAL SCHEMATIC</span>
+            <svg viewBox="0 0 460 220" width="100%" height="200" aria-label="Schematic of Photomultiplier Tube Dynode Cascade">
+              <!-- Photocathode -->
+              <rect x="25" y="70" width="14" height="80" rx="2" fill="#00f0ff"/>
+              <text x="32" y="175" fill="#00f0ff" font-size="9" font-family="sans-serif" text-anchor="middle">Photocathode</text>
+
+              <!-- Dynodes D1 to D5 -->
+              <path d="M 90 60 Q 105 80 90 100" fill="none" stroke="#a855f7" stroke-width="4"/>
+              <text x="95" y="52" fill="#a855f7" font-size="8" font-family="monospace">D1</text>
+
+              <path d="M 150 120 Q 165 140 150 160" fill="none" stroke="#a855f7" stroke-width="4"/>
+              <text x="155" y="175" fill="#a855f7" font-size="8" font-family="monospace">D2</text>
+
+              <path d="M 210 60 Q 225 80 210 100" fill="none" stroke="#a855f7" stroke-width="4"/>
+              <text x="215" y="52" fill="#a855f7" font-size="8" font-family="monospace">D3</text>
+
+              <path d="M 270 120 Q 285 140 270 160" fill="none" stroke="#a855f7" stroke-width="4"/>
+              <text x="275" y="175" fill="#a855f7" font-size="8" font-family="monospace">D4</text>
+
+              <!-- Anode Collector -->
+              <rect x="360" y="80" width="16" height="60" rx="3" fill="#10b981"/>
+              <text x="368" y="170" fill="#10b981" font-size="9" font-family="sans-serif" text-anchor="middle">Anode</text>
+
+              <!-- Zigzag Electron Multiplications -->
+              <line x1="39" y1="110" x2="92" y2="80" stroke="#38bdf8" stroke-width="1.5"/>
+              <line x1="97" y1="82" x2="152" y2="138" stroke="#a855f7" stroke-width="2"/>
+              <line x1="157" y1="140" x2="212" y2="82" stroke="#a855f7" stroke-width="3"/>
+              <line x1="217" y1="84" x2="272" y2="138" stroke="#a855f7" stroke-width="4.5"/>
+              <line x1="277" y1="140" x2="358" y2="110" stroke="#10b981" stroke-width="6"/>
+            </svg>
+            <span class="schematic-caption">Fig 4.1: Dynode Cascade Ladder (Single Photoelectron Amplified Exponentially)</span>
+          </div>
+        </div>
+
+        <div class="glass-panel" style="padding: 28px;">
+          <span class="card-tag">B. PHYSICAL WORKING PRINCIPLE</span>
+          <h3 style="margin: 12px 0 10px;">The Physics of Secondary Electron Multiplication</h3>
+          <ol class="scientific-list" style="margin-top: 10px;">
+            <li><strong>Primary Photoemission:</strong> An incident photon passes through the entrance window and strikes the photocathode, ejecting a primary electron via <code>hf &gt; &Phi;</code>.</li>
+            <li><strong>Electrostatic Acceleration:</strong> An electric field accelerates this electron toward dynode 1 (D₁), held at +100 V relative to the cathode.</li>
+            <li><strong>Secondary Emission Factor (&delta;):</strong> The primary electron strikes D₁ with ~100 eV kinetic energy, knocking out &delta; secondary electrons (typically &delta; &asymp; 3 &ndash; 5 depending on surface coating).</li>
+            <li><strong>Exponential Multiplication:</strong> These &delta; secondary electrons are accelerated toward dynode 2 (+200 V), each producing &delta; more electrons (total &delta;²). Across <code>n</code> dynode stages, the overall current gain is:
+              <div class="formula-box" style="margin: 8px 0;">
+                <div class="math-eq">
+                  Gain <span class="math-var">G</span> = <span class="math-var">&delta;</span><sup class="math-sub">n</sup>
+                </div>
+              </div>
+              For &delta; = 4 and n = 10 stages: <code>G = 4¹⁰ &asymp; 1,048,576</code>!
+            </li>
+            <li><strong>Anode Pulse Generation:</strong> The resulting pulse of ~10⁶ electrons is collected at the anode, creating a measurable millivolt voltage pulse across an external load resistor.</li>
+          </ol>
+        </div>
+
+        <!-- Interactive Dynode Cascade Calculator -->
+        <div class="app-demo-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="card-tag">E. INTERACTIVE SIMULATION</span>
+              <h3 style="margin-top: 4px;">Dynode Cascade Stage Gain Calculator</h3>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+              <label for="pmt-delta-slider" style="font-size: 0.88rem; color: var(--text-muted); display: block; margin-bottom: 6px;">
+                Secondary Emission Factor (&delta;): <strong id="pmt-delta-val" class="text-cyan">4.0</strong>
+              </label>
+              <input type="range" id="pmt-delta-slider" min="2.5" max="5.0" value="4.0" step="0.1" style="width: 100%;">
+            </div>
+
+            <div>
+              <label for="pmt-stages-slider" style="font-size: 0.88rem; color: var(--text-muted); display: block; margin-bottom: 6px;">
+                Number of Dynode Stages (n): <strong id="pmt-stages-val" class="text-purple">10 Stages</strong>
+              </label>
+              <input type="range" id="pmt-stages-slider" min="6" max="12" value="10" step="1" style="width: 100%;">
+            </div>
+          </div>
+
+          <div class="demo-readout-row">
+            <div class="demo-readout-box">
+              <span class="demo-label">Total Multiplication Gain (G)</span>
+              <span class="demo-val text-purple" id="pmt-stat-gain">1.05 &times; 10⁶</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Output Electron Packet</span>
+              <span class="demo-val text-emerald" id="pmt-stat-electrons">1,048,576 e⁻</span>
+            </div>
+            <div class="demo-readout-box">
+              <span class="demo-label">Collected Output Charge</span>
+              <span class="demo-val text-cyan" id="pmt-stat-charge">0.168 pC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-content-grid">
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">C. PRACTICAL FIELDS</span>
+            <h4 style="margin: 10px 0;">Cutting-Edge Applications</h4>
+            <ul class="scientific-list">
+              <li><strong>Nuclear Medicine:</strong> Positron Emission Tomography (PET scanners) and gamma cameras coupled to NaI(Tl) scintillators.</li>
+              <li><strong>Neutrino Astrophysics:</strong> Thousands of 20-inch PMTs submerged in the Super-Kamiokande observatory detect Cherenkov light from neutrino interactions.</li>
+              <li><strong>Particle Physics:</strong> Calorimeters and Cherenkov counters at the Large Hadron Collider (CERN).</li>
+            </ul>
+          </div>
+
+          <div class="glass-panel" style="padding: 24px;">
+            <span class="card-tag">F. ADVANTAGES & LIMITS</span>
+            <h4 style="margin: 10px 0;">Engineering Trade-Offs</h4>
+            <ul class="scientific-list">
+              <li><strong>Advantages:</strong> Single-photon sensitivity, sub-nanosecond temporal resolution, noiseless internal amplification.</li>
+              <li><strong>Limitations:</strong> Requires high voltage power supplies (&sim; 1,000 &ndash; 2,000 V), sensitive to stray magnetic fields (requires mu-metal magnetic shields), bulky vacuum glass tube.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ADVANCED PHOTOELECTRIC EMISSION (INDEPENDENT PAGE) -->
+    <section id="advanced" class="section-container page-view">
+      <div class="advanced-hero-banner">
+        <span class="advanced-badge">ADVANCED PHYSICAL REGIME &bull; NONLINEAR QUANTUM OPTICS</span>
+        <h2 style="font-size: 2.2rem; margin-bottom: 10px;">Advanced Photoelectric Emission</h2>
+        <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 820px;">
+          Multiphoton photoemission, ultrafast pulsed laser interactions, and the microscopic limits of the idealized single-photon model.
+        </p>
+        <div class="scientific-note" style="margin-top: 18px; border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.08);">
+          <strong>Scientific Classification:</strong> Multiphoton photoemission is <em>not a failure</em> of Einstein's photoelectric law. The standard photoelectric equation remains completely valid for its applicable regime of ordinary light intensities. In intense laser fields, photoemission physics expands into the multiphoton and strong-field regimes.
+        </div>
+      </div>
+
+      <!-- Section A: Ordinary Photoelectric Regime -->
+      <div class="glass-panel" style="padding: 28px; margin-bottom: 28px;">
+        <span class="card-tag">SECTION A: LINEAR REGIME</span>
+        <h3 style="margin: 12px 0 10px;">The Ordinary Single-Photon Regime</h3>
+        <p>
+          In standard laboratory experiments conducted with incoherent light sources (such as mercury arc lamps or standard LEDs), light interacts with matter through linear single-photon absorption events:
+        </p>
+        <ul class="scientific-list" style="margin-top: 12px;">
+          <li>Radiation transfers radiant energy in discrete single photons of energy <code>E = hf</code>.</li>
+          <li>For an idealized metal surface with work function <code>&Phi;</code>, the single-photon threshold frequency is <code>f₀ = &Phi; / h</code>.</li>
+          <li>If <code>f &lt; f₀</code>, an electron cannot absorb enough energy from a single photon to escape, and emission is strictly forbidden.</li>
+          <li>If <code>f &gt; f₀</code>, energy conservation yields the familiar linear relation:
+            <div class="formula-box" style="margin: 6px 0;">
+              <div class="math-eq">
+                <span class="math-var">K</span><sub class="math-sub">max</sub> = <span class="math-var">h</span><span class="math-var">f</span> &minus; <span class="math-var">&Phi;</span>
+              </div>
+            </div>
+          </li>
+          <li>At threshold equality <code>f = f₀</code>, electrons are liberated with zero residual kinetic energy (<code>K<sub>max</sub> = 0</code>).</li>
+          <li>Increasing radiation intensity merely increases the photon flux per unit area per second. This increases the saturation photocurrent, but leaves the maximum kinetic energy <code>K<sub>max</sub></code> completely unchanged.</li>
+        </ul>
+      </div>
+
+      <!-- Section B: High-Intensity Multiphoton Regime -->
+      <div class="glass-panel" style="padding: 28px; margin-bottom: 28px;">
+        <span class="card-tag">SECTION B: NONLINEAR REGIME</span>
+        <h3 style="margin: 12px 0 10px;">High-Intensity Multiphoton Photoemission</h3>
+        <p>
+          When metal surfaces are irradiated by high-intensity, ultrafast pulsed lasers (e.g., Titanium:Sapphire femtosecond lasers generating peak optical intensities of <code>10¹¹ &ndash; 10¹⁴ W/cm²</code>), the local photon flux is so high that an electron can absorb <em>multiple photons</em> near-simultaneously through virtual intermediate states:
+        </p>
+        <div class="theory-grid" style="margin-top: 16px;">
+          <div class="theory-card glass-panel">
+            <div class="theory-card-badge">01</div>
+            <h4>Sub-Threshold Liberation</h4>
+            <p>
+              Even when a single photon has insufficient energy (<code>hf &lt; &Phi;</code>), an electron can escape if the sum of <code>n</code> photons satisfies:
+            </p>
+            <code>n &middot; hf &gt; &Phi; &nbsp;(n = 2, 3, 4...)</code>
+          </div>
+
+          <div class="theory-card glass-panel">
+            <div class="theory-card-badge">02</div>
+            <h4>Multiphoton Kinetic Energy</h4>
+            <p>
+              For an idealized n-photon photoemission channel, the maximum kinetic energy is:
+            </p>
+            <code>K<sub>max</sub> = n &middot; hf &minus; &Phi;</code>
+          </div>
+
+          <div class="theory-card glass-panel">
+            <div class="theory-card-badge">03</div>
+            <h4>Nonlinear Intensity Scaling</h4>
+            <p>
+              The transition rate and emitted electron yield <code>J</code> scales nonlinearly with intensity <code>I</code> as:
+            </p>
+            <code>J &prop; Iⁿ &nbsp;(for n-photon absorption)</code>
+          </div>
+        </div>
+
+        <p style="margin-top: 16px; font-size: 0.92rem; color: var(--text-muted);">
+          <strong>Physical Nuance:</strong> In real experiments, intense laser pulses also introduce Above-Threshold Photoemission (ATP), where an electron absorbs additional photons beyond the ionization threshold (<code>n + 1</code>, <code>n + 2</code>), producing discrete peaks separated by <code>hf</code> in the energy spectrum, as well as ponderomotive potential energy shifts.
+        </p>
+      </div>
+
+      <!-- Section C: Interactive Simulation -->
+      <div class="glass-panel" style="padding: 28px; margin-bottom: 28px;">
+        <span class="card-tag">SECTION C: INTERACTIVE SIMULATION</span>
+        <h3 style="margin: 12px 0 16px;">Multiphoton Energy Balance & Absorption Simulator</h3>
+
+        <div class="advanced-sim-wrapper">
+          <div class="advanced-controls-box">
+            <!-- Mode Switcher -->
+            <div>
+              <span class="demo-label" style="margin-bottom: 6px; display: block;">Radiation Source Regime:</span>
+              <div class="mode-toggle-group">
+                <button class="mode-btn active" id="adv-mode-cw">Ordinary Lamp (CW)</button>
+                <button class="mode-btn" id="adv-mode-pulsed">Ultrafast Laser (Pulsed)</button>
+              </div>
+            </div>
+
+            <!-- Frequency Slider -->
+            <div>
+              <label for="adv-freq-slider" style="font-size: 0.86rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+                <span>Radiation Frequency (f):</span>
+                <strong id="adv-freq-val" class="text-cyan">4.00 &times; 10¹⁴ Hz (Red / Near-IR)</strong>
+              </label>
+              <input type="range" id="adv-freq-slider" min="2.0" max="10.0" value="4.0" step="0.1" style="width: 100%;">
+            </div>
+
+            <!-- Work Function Slider -->
+            <div>
+              <label for="adv-phi-slider" style="font-size: 0.86rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+                <span>Target Metal Work Function (&Phi;):</span>
+                <strong id="adv-phi-val" class="text-amber">2.30 eV (Potassium)</strong>
+              </label>
+              <input type="range" id="adv-phi-slider" min="1.8" max="5.0" value="2.3" step="0.1" style="width: 100%;">
+            </div>
+
+            <!-- Laser Peak Intensity -->
+            <div>
+              <label for="adv-intensity-slider" style="font-size: 0.86rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+                <span>Peak Intensity:</span>
+                <strong id="adv-intensity-val" class="text-purple">1.0 &times; 10¹² W/cm²</strong>
+              </label>
+              <input type="range" id="adv-intensity-slider" min="1" max="10" value="5" step="1" style="width: 100%;">
+            </div>
+          </div>
+
+          <!-- Dynamic Output Readouts & Mini Visualization -->
+          <div class="advanced-canvas-holder">
+            <span class="card-tag" style="margin-bottom: 8px;">QUANTUM LEVEL VISUALIZATION</span>
+            <canvas id="advanced-multiphoton-canvas" width="460" height="260"></canvas>
+            <div id="adv-canvas-caption" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-faint); margin-top: 8px;">
+              Single photon hf = 1.65 eV &lt; &Phi; (2.30 eV). In laser mode, 2-photon absorption (2hf = 3.31 eV) enables emission!
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-readout-row" style="margin-top: 20px;">
+          <div class="demo-readout-box">
+            <span class="demo-label">Single Photon Energy (hf)</span>
+            <span class="demo-val text-cyan" id="adv-res-hf">1.65 eV</span>
+          </div>
+          <div class="demo-readout-box">
+            <span class="demo-label">Min. Photons Required (n_min)</span>
+            <span class="demo-val text-amber" id="adv-res-nmin">2 Photons</span>
+          </div>
+          <div class="demo-readout-box">
+            <span class="demo-label">Ordinary 1-Photon Emission?</span>
+            <span class="demo-val text-rose" id="adv-res-single">BLOCKED (hf &lt; &Phi;)</span>
+          </div>
+          <div class="demo-readout-box">
+            <span class="demo-label">Multiphoton K_max (2hf &minus; &Phi;)</span>
+            <span class="demo-val text-emerald" id="adv-res-kmax">1.01 eV</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section D: Comparison Table -->
+      <div class="comparison-container glass-panel" style="margin-bottom: 28px;">
+        <span class="card-tag">SECTION D: COMPARATIVE SCIENTIFIC ANALYSIS</span>
+        <h3 class="comparison-title" style="margin-top: 10px;">
+          Ordinary Single-Photon Photoemission vs. Multiphoton Photoemission
+        </h3>
+        <div class="table-responsive">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Physical Property</th>
+                <th>Ordinary Photoelectric Effect (Einstein 1905)</th>
+                <th>Multiphoton Photoelectric Effect (High Intensity)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Photon Order (n)</strong></td>
+                <td><code>n = 1</code> (Strict one-photon absorption)</td>
+                <td><code>n &ge; 2</code> (Simultaneous multi-photon absorption)</td>
+              </tr>
+              <tr>
+                <td><strong>Energy Condition</strong></td>
+                <td><code>hf &gt; &Phi;</code></td>
+                <td><code>n &middot; hf &gt; &Phi;</code></td>
+              </tr>
+              <tr>
+                <td><strong>Threshold Frequency</strong></td>
+                <td>Strict single threshold <code>f₀ = &Phi; / h</code></td>
+                <td>Effective threshold frequency lowered to <code>f₀ / n</code></td>
+              </tr>
+              <tr>
+                <td><strong>Sub-Threshold Emission</strong></td>
+                <td>Strictly impossible under any intensity</td>
+                <td>Possible via 2-photon, 3-photon absorption under intense pulses</td>
+              </tr>
+              <tr>
+                <td><strong>Intensity Dependence of Current</strong></td>
+                <td>Linear: <code>I &prop; Intensity¹</code></td>
+                <td>Nonlinear power law: <code>Yield &prop; Intensityⁿ</code></td>
+              </tr>
+              <tr>
+                <td><strong>Max Kinetic Energy (K<sub>max</sub>)</strong></td>
+                <td><code>K<sub>max</sub> = hf &minus; &Phi;</code> (Independent of intensity)</td>
+                <td><code>K<sub>max</sub> = n&middot;hf &minus; &Phi;</code> (Discrete order peaks + ATP)</td>
+              </tr>
+              <tr>
+                <td><strong>Required Light Source</strong></td>
+                <td>Conventional lamps, LEDs, CW sunlight</td>
+                <td>Mode-locked ultrafast pulsed lasers (Ti:Sapphire, &lt; 100 fs)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section E: Visual Explanation & Schematic Diagram -->
+      <div class="glass-panel" style="padding: 28px;">
+        <span class="card-tag">SECTION E: QUANTUM PATHWAY SCHEMATIC</span>
+        <h3 style="margin: 12px 0 10px;">Energy Level Diagram & Emission Pathways</h3>
+
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+          <svg viewBox="0 0 640 260" width="100%" height="240" aria-label="Energy band diagram comparing single-photon and multiphoton photoemission">
+            <!-- Vacuum Level -->
+            <line x1="40" y1="50" x2="600" y2="50" stroke="#f1f5f9" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="605" y="54" fill="#f1f5f9" font-size="10" font-family="monospace">Vacuum Level (E_vac = 0)</text>
+
+            <!-- Fermi Level -->
+            <line x1="40" y1="160" x2="600" y2="160" stroke="#f59e0b" stroke-width="2"/>
+            <text x="605" y="164" fill="#f59e0b" font-size="10" font-family="monospace">Fermi Level (E_F)</text>
+
+            <!-- Conduction Band Shading -->
+            <rect x="40" y="160" width="560" height="70" fill="rgba(245,158,11,0.08)"/>
+            <text x="50" y="200" fill="#94a3b8" font-size="9" font-family="sans-serif">Conduction Electrons (Filled Band)</text>
+
+            <!-- Work Function Bracket -->
+            <line x1="80" y1="50" x2="80" y2="160" stroke="#38bdf8" stroke-width="2"/>
+            <text x="90" y="110" fill="#38bdf8" font-size="11" font-family="monospace">Work Function &Phi;</text>
+
+            <!-- Pathway 1: Single Photon -->
+            <line x1="200" y1="160" x2="200" y2="30" stroke="#00f0ff" stroke-width="3"/>
+            <text x="200" y="20" fill="#00f0ff" font-size="10" font-family="monospace" text-anchor="middle">hf &gt; &Phi; &rarr; K_max</text>
+            <text x="200" y="240" fill="#00f0ff" font-size="9" font-family="sans-serif" text-anchor="middle">Pathway A: Single Photon</text>
+
+            <!-- Pathway 2: Virtual Level & 2 Photons -->
+            <line x1="430" y1="160" x2="430" y2="105" stroke="#a855f7" stroke-width="2.5"/>
+            <!-- Virtual State Line -->
+            <line x1="410" y1="105" x2="450" y2="105" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="460" y="108" fill="#a855f7" font-size="8" font-family="monospace">Virtual State</text>
+            <line x1="430" y1="105" x2="430" y2="25" stroke="#a855f7" stroke-width="2.5"/>
+            <text x="430" y="15" fill="#a855f7" font-size="10" font-family="monospace" text-anchor="middle">2hf &gt; &Phi; &rarr; K_max</text>
+            <text x="430" y="240" fill="#a855f7" font-size="9" font-family="sans-serif" text-anchor="middle">Pathway B: 2-Photon Absorption</text>
+          </svg>
+        </div>
+        <p class="schematic-caption">
+          Fig 5.1: Comparative energy band diagram illustrating electron excitation across the work function barrier &Phi;. Left: Single high-frequency photon directly ejects electron into continuum. Right: Two sub-threshold photons absorbed via an intermediate virtual quantum state.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: PROJECT DIARY / DEVELOPMENT LOG (INDEPENDENT PAGE) -->
+    <section id="diary" class="section-container page-view">
+      <div class="diary-header-card glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <span class="section-kicker">PROJECT LOGBOOK & ARTIFACTS</span>
+            <h2 class="section-title" style="margin-bottom: 6px;">Project Diary & Development Log</h2>
+            <p class="section-subtitle">
+              Verified record of engineering physics research milestones, mathematical modeling, numerical simulations, and software development for BAPHY 105.
+            </p>
+          </div>
+          <button class="btn btn-primary" id="btn-open-diary-modal">
+            <span>+ Add Log Entry</span>
+          </button>
+        </div>
+
+        <!-- Academic Affiliation Banner (Preserved Group Details) -->
+        <div class="project-institution-banner" style="margin-top: 14px; margin-bottom: 0;">
+          <div class="inst-item">
+            <span class="inst-label">COURSE & CODE</span>
+            <strong class="inst-val text-cyan">Engineering Physics (BAPHY 105)</strong>
+          </div>
+          <div class="inst-item">
+            <span class="inst-label">AFFILIATION</span>
+            <strong class="inst-val text-amber">VIT CHENNAI &bull; SCOPE (CSE CORE)</strong>
+          </div>
+          <div class="inst-item">
+            <span class="inst-label">TEAM MEMBERS</span>
+            <strong class="inst-val text-emerald" style="font-size: 0.88rem;">Harshini V, Nandini S, S Bhavana, Naravula Sudeeptaa</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add New Diary Entry Form (Collapsible) -->
+      <div class="diary-form-card hidden" id="diary-form-card">
+        <h3 style="margin-bottom: 14px; color: #ffffff;">Record New Development / Lab Observation Entry</h3>
+        <div class="diary-form-grid">
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Milestone Title:</label>
+            <input type="text" id="new-diary-title" class="diary-form-input" placeholder="e.g. Calibrated Stopping Voltage Curve for Cesium">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Author / Contributor:</label>
+            <select id="new-diary-author" class="diary-form-input">
+              <option value="Harshini V (26BCE1356)">Harshini V (26BCE1356)</option>
+              <option value="Nandini S (26BCE1424)">Nandini S (26BCE1424)</option>
+              <option value="S Bhavana (26BCE1286)">S Bhavana (26BCE1286)</option>
+              <option value="Naravula Sudeeptaa (26BCE1336)">Naravula Sudeeptaa (26BCE1336)</option>
+              <option value="Engineering Physics Project Team">Engineering Physics Project Team</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Category / Domain:</label>
+          <input type="text" id="new-diary-category" class="diary-form-input" placeholder="e.g. Quantum Derivations / Simulation Testing / Data Sweep">
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Detailed Observation / Notes:</label>
+          <textarea id="new-diary-body" class="diary-form-textarea" placeholder="Document experimental observations, formula derivations, code implementations, or measurement anomalies..."></textarea>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-primary" id="btn-save-diary-entry">Save Entry to Logbook</button>
+          <button class="btn btn-outline" id="btn-cancel-diary-entry">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Diary Toolbar: Filter and Actions -->
+      <div class="diary-actions-bar">
+        <input type="text" class="diary-search-input" id="diary-search-input" placeholder="Filter log entries by keyword or author...">
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-sm btn-outline" id="btn-export-diary" title="Export Diary as JSON file">
+            <span>&#128190; Export Diary</span>
+          </button>
+          <button class="btn btn-sm btn-outline" id="btn-reset-diary" title="Reset to standard project milestones">
+            <span>&#8634; Reset Defaults</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Diary Entries Container -->
+      <div class="diary-entries-list" id="diary-entries-container">
+        <!-- Dynamically rendered by app.js from localStorage -->
       </div>
     </section>
 
     <!-- SECTION 18: CONCLUSION -->
-    <section id="conclusion" class="section-container">
+    <section id="conclusion" class="section-container page-view">
       <div class="section-header">
         <span class="section-kicker">SYNTHESIS & SCIENTIFIC FINDINGS</span>
         <h2 class="section-title">Key Experimental Findings & Conclusions</h2>
@@ -1282,7 +2072,7 @@
           <div class="brand-text large-brand">THE PHOTOELECTRIC <span class="brand-accent">EFFECT</span></div>
           <p class="footer-sub">Interactive Virtual Physics Laboratory</p>
           <p class="footer-desc">
-            A comprehensive web-based computational physics simulation designed for B.Tech First-Year Engineering Physics laboratory demonstration and viva examination.
+            A comprehensive web-based computational physics simulation designed for B.Tech First-Year Engineering Physics laboratory demonstration and conceptual learning.
           </p>
         </div>
 
@@ -1355,21 +2145,23 @@
           &copy; 2026&ndash;2030 Academic Physics Simulation. Designed strictly for educational and virtual laboratory demonstration.
         </div>
         <div class="footer-links">
-          <a href="#home">Back to Top &uarr;</a>
+          <a href="#home">Home</a>
           <a href="#theory">Theory</a>
           <a href="#experiment">Virtual Lab</a>
           <a href="#observations">Observations</a>
           <a href="#graphs">Graphs</a>
-          <a href="#viva-quiz">Viva Questions</a>
+          <a href="#challenges">Challenges</a>
+          <a href="#applications">Applications</a>
+          <a href="#advanced">Advanced Emission</a>
+          <a href="#diary">Project Diary</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts: Physics Simulation, Graphs, Quiz, Challenges, App Controller -->
+  <!-- Scripts: Physics Simulation, Graphs, Challenges, App Controller -->
   <script src="simulation.js"></script>
   <script src="graphs.js"></script>
-  <script src="quiz.js"></script>
   <script src="challenges.js"></script>
   <script src="app.js"></script>
 </body>
